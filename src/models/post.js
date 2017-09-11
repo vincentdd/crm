@@ -1,29 +1,41 @@
 import modelExtend from 'dva-model-extend'
-import { query } from 'services/posts'
-import { pageModel } from 'models/common'
+import {
+  query
+} from 'services/posts'
+import {
+  pageModel
+} from 'models/common'
 
 export default modelExtend(pageModel, {
 
   namespace: 'post',
 
   subscriptions: {
-    setup ({ dispatch, history }) {
+    setup({
+      dispatch,
+      history
+    }) {
       history.listen((location) => {
         if (location.pathname === '/post') {
-          dispatch({ type: 'query',
+          console.log(location);
+          dispatch({
+            type: 'query',
             payload: {
               status: 2,
               ...location.query,
-            } })
+            }
+          })
         }
       })
     },
   },
 
-  effects: {
-    * query ({
+  effects: { * query({
       payload,
-    }, { call, put }) {
+    }, {
+      call,
+      put
+    }) {
       const data = yield call(query, payload)
       if (data.success) {
         yield put({
