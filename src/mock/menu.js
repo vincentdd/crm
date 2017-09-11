@@ -154,6 +154,24 @@ let database = [
     name: 'Test Navigation22',
     route: '/navigation/navigation2/navigation2',
   },
+  {
+    id: '8',
+    bpid: '1',
+    name: 'crm账户管理',
+    route: '/user',
+  },
+  {
+    id: '9',
+    bpid: '1',
+    name: '客户账号管理',
+    route: '/user',
+  },
+  {
+    id: '10',
+    bpid: '1',
+    name: '线索管理',
+    route: '/user',
+  },
 ]
 
 module.exports = {

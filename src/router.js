@@ -142,7 +142,7 @@ const Routers = function ({ history, app }) {
       ],
     },
   ]
-
+  console.log(routes);
   return <Router history={history} routes={routes} />
 }
 
