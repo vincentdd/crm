@@ -30,6 +30,7 @@ const EnumRoleType = {
   ADMIN: 'admin',
   DEFAULT: 'guest',
   DEVELOPER: 'developer',
+  CRM_ADMIN: 'crm_admin'
 }
 
 const userPermission = {
@@ -42,6 +43,10 @@ const userPermission = {
   },
   DEVELOPER: {
     role: EnumRoleType.DEVELOPER,
+  },
+  CRM_ADMIN: {
+    visit: ['1', '8', '9', '10'],
+    role: EnumRoleType.CRM_ADMIN,
   },
 }
 
@@ -61,6 +66,12 @@ const adminUsers = [
     username: '吴彦祖',
     password: '123456',
     permissions: userPermission.DEVELOPER,
+  },
+  {
+    id: 3,
+    username: 'crm_admin',
+    password: '123456',
+    permissions: userPermission.CRM_ADMIN,
   },
 ]
 

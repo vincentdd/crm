@@ -17,7 +17,6 @@ export default modelExtend(pageModel, {
     }) {
       history.listen((location) => {
         if (location.pathname === '/post') {
-          console.log(location);
           dispatch({
             type: 'query',
             payload: {
