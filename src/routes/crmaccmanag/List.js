@@ -42,14 +42,16 @@ const List = ({
 		dataIndex: 'limit',
 	}, {
 		title: '状态',
-		dataIndex: 'state',
+		render: (record) => {
+			return <a href="#">{record.state === true ? '启用' : '禁用'}</a>
+		}
 	}, {
 		title: '操作',
-		render: (state, record) => {
+		render: (record) => {
 			return <span>
-      			<a href="#">{state == true?<Icon type="down" style={{ fontSize: 16, color: 'green' }} />:<Icon type="close-circle-o" style={{ fontSize: 16, color: 'green' }} />}</a>
+      			<a href="#">{record.state === true?<Icon type="down" style={{ fontSize: 16, color: 'green' }} />:<Icon type="close-circle-o" style={{ fontSize: 16, color: 'green' }} />}</a>
       			<a href="#" >查看</a>
-			<a href="#" onClick={(e) => {debugger;handleClick(record, e,'3')}}>编辑</a>
+				<a href="#" onClick={(e) => {handleClick(record, e,'3')}}>编辑</a>
     		</span>
 		}
 	}]

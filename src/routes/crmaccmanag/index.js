@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
-	connect
+	connect,
 } from 'dva'
 import {
 	Tabs
@@ -12,20 +12,22 @@ import {
 import 'antd/dist/antd.css';
 import List from './List';
 import Modal from './Modal'
+import Filter from './Filter'
 
-const Test = ({
+const Account = ({
 	crmaccmanag,
 	dispatch,
 	loading,
-	location
+	location,
 }) => {
-	//debugger;
 	const {
 		list,
 		pagination,
 		modalVisible,
 		modalType,
-		currentItem
+		currentItem,
+		isMotion,
+		selectedRowKeys
 	} = crmaccmanag
 	const {
 		query = {}, pathname
@@ -35,18 +37,19 @@ const Test = ({
 		item: modalType === 'create' ? {} : currentItem,
 		visible: modalVisible,
 		maskClosable: false,
-		confirmLoading: loading.effects['user/update'],
-		title: `${modalType === 'create' ? 'Create User' : 'Update User'}`,
+		confirmLoading: loading.effects['crmaccmanag/update'],
+		title: `${modalType === 'create' ? 'Create Account' : 'Update Account'}`,
 		wrapClassName: 'vertical-center-modal',
 		onOk(data) {
+			debugger;
 			dispatch({
-				type: `user/${modalType}`,
+				type: `crmaccmanag/${modalType}`,
 				payload: data,
 			})
 		},
 		onCancel() {
 			dispatch({
-				type: 'user/hideModal',
+				type: 'crmaccmanag/hideModal',
 			})
 		},
 	}
@@ -54,7 +57,7 @@ const Test = ({
 	const listProps = {
 		pagination,
 		dataSource: list,
-		loading: loading.effects['user/query'],
+		loading: loading.effects['crmaccmanagcrmaccmanag/query'],
 		onChange(page) {
 			dispatch(routerRedux.push({
 				pathname,
@@ -73,18 +76,53 @@ const Test = ({
 					currentItem: item,
 				},
 			})
+		},
+		onAdd() {
+			dispatch({
+				type: 'crmaccmanag/showModal',
+				payload: {
+					modalType: 'create',
+				},
+			})
 		}
 	}
 
+	const filterProps = {
+		isMotion,
+		filter: {
+			...location.query,
+		},
+		onSearch(fieldsValue) {
+			fieldsValue.keyword.length ? dispatch(routerRedux.push({
+				pathname: '/crmaccmanag',
+				query: {
+					field: fieldsValue.field,
+					keyword: fieldsValue.keyword,
+				},
+			})) : dispatch(routerRedux.push({
+				pathname: '/crmaccmanag',
+			}))
+		},
+		onAdd() {
+			dispatch({
+				type: 'crmaccmanag/showModal',
+				payload: {
+					modalType: 'create',
+				},
+			})
+		},
+	}
+
 	return (
-		<div>
+		<div className="content-inner">
+      		<Filter {...filterProps} />
 			<List {...listProps} />
 			{modalVisible && <Modal {...modalProps} />}
 		</div>
 	);
 }
 
-Test.propTypes = {
+Account.propTypes = {
 	userListProps: PropTypes.object
 };
 
@@ -94,4 +132,4 @@ export default connect(({
 }) => ({
 	crmaccmanag,
 	loading
-}))(Test)
+}))(Account)

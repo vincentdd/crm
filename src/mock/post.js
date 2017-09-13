@@ -1,13 +1,24 @@
-const { config, posts } = require('./common')
+const {
+  config,
+  posts
+} = require('./common')
 
-const { apiPrefix } = config
+const {
+  apiPrefix
+} = config
 let database = posts
 
 module.exports = {
 
-  [`GET ${apiPrefix}/posts`] (req, res) {
-    const { query } = req
-    let { pageSize, page, ...other } = query
+  [`GET ${apiPrefix}/posts`](req, res) {
+    const {
+      query
+    } = req
+    let {
+      pageSize,
+      page,
+      ...other
+    } = query
     pageSize = pageSize || 10
     page = page || 1
 

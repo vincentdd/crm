@@ -1,14 +1,25 @@
 /* global window */
 /* global document */
 /* global location */
-import { routerRedux } from 'dva/router'
-import { parse } from 'qs'
+import {
+  routerRedux
+} from 'dva/router'
+import {
+  parse
+} from 'qs'
 import config from 'config'
-import { EnumRoleType } from 'enums'
-import { query, logout } from 'services/app'
+import {
+  EnumRoleType
+} from 'enums'
+import {
+  query,
+  logout
+} from 'services/app'
 import * as menusService from 'services/menus'
 
-const { prefix } = config
+const {
+  prefix
+} = config
 
 export default {
   namespace: 'app',
@@ -17,14 +28,12 @@ export default {
     permissions: {
       visit: [],
     },
-    menu: [
-      {
-        id: 1,
-        icon: 'laptop',
-        name: 'Dashboard',
-        router: '/dashboard',
-      },
-    ],
+    menu: [{
+      id: 1,
+      icon: 'laptop',
+      name: 'Dashboard',
+      router: '/dashboard',
+    }, ],
     menuPopoverVisible: false,
     siderFold: window.localStorage.getItem(`${prefix}siderFold`) === 'true',
     darkTheme: window.localStorage.getItem(`${prefix}darkTheme`) === 'true',
@@ -35,7 +44,10 @@ export default {
   },
   subscriptions: {
 
-    setupHistory ({ dispatch, history }) {
+    setupHistory({
+      dispatch,
+      history
+    }) {
       history.listen((location) => {
         dispatch({
           type: 'updateState',
@@ -47,13 +59,19 @@ export default {
       })
     },
 
-    setup ({ dispatch }) {
-      dispatch({ type: 'query' })
+    setup({
+      dispatch
+    }) {
+      dispatch({
+        type: 'query'
+      })
       let tid
       window.onresize = () => {
         clearTimeout(tid)
         tid = setTimeout(() => {
-          dispatch({ type: 'changeNavbar' })
+          dispatch({
+            type: 'changeNavbar'
+          })
         }, 300)
       }
     },
@@ -61,14 +79,27 @@ export default {
   },
   effects: {
 
-    * query ({
+    * query({
       payload,
-    }, { call, put, select }) {
-      const { success, user } = yield call(query, payload)
-      const { locationPathname } = yield select(_ => _.app)
+    }, {
+      call,
+      put,
+      select
+    }) {
+      const {
+        success,
+        user
+      } = yield call(query, payload)
+      const {
+        locationPathname
+      } = yield select(_ => _.app)
       if (success && user) {
-        const { list } = yield call(menusService.query)
-        const { permissions } = user
+        const {
+          list
+        } = yield call(menusService.query)
+        const {
+          permissions
+        } = user
         let menu = list
         if (permissions.role === EnumRoleType.ADMIN || permissions.role === EnumRoleType.DEVELOPER) {
           permissions.visit = list.map(item => item.id)
@@ -105,35 +136,50 @@ export default {
       }
     },
 
-    * logout ({
+    * logout({
       payload,
-    }, { call, put }) {
+    }, {
+      call,
+      put
+    }) {
       const data = yield call(logout, parse(payload))
       if (data.success) {
-        yield put({ type: 'query' })
+        yield put({
+          type: 'query'
+        })
       } else {
         throw (data)
       }
     },
 
-    * changeNavbar (action, { put, select }) {
-      const { app } = yield (select(_ => _))
+    * changeNavbar(action, {
+      put,
+      select
+    }) {
+      const {
+        app
+      } = yield(select(_ => _))
       const isNavbar = document.body.clientWidth < 769
       if (isNavbar !== app.isNavbar) {
-        yield put({ type: 'handleNavbar', payload: isNavbar })
+        yield put({
+          type: 'handleNavbar',
+          payload: isNavbar
+        })
       }
     },
 
   },
   reducers: {
-    updateState (state, { payload }) {
+    updateState(state, {
+      payload
+    }) {
       return {
         ...state,
         ...payload,
       }
     },
 
-    switchSider (state) {
+    switchSider(state) {
       window.localStorage.setItem(`${prefix}siderFold`, !state.siderFold)
       return {
         ...state,
@@ -141,7 +187,7 @@ export default {
       }
     },
 
-    switchTheme (state) {
+    switchTheme(state) {
       window.localStorage.setItem(`${prefix}darkTheme`, !state.darkTheme)
       return {
         ...state,
@@ -149,21 +195,25 @@ export default {
       }
     },
 
-    switchMenuPopver (state) {
+    switchMenuPopver(state) {
       return {
         ...state,
         menuPopoverVisible: !state.menuPopoverVisible,
       }
     },
 
-    handleNavbar (state, { payload }) {
+    handleNavbar(state, {
+      payload
+    }) {
       return {
         ...state,
         isNavbar: payload,
       }
     },
 
-    handleNavOpenKeys (state, { payload: navOpenKeys }) {
+    handleNavOpenKeys(state, {
+      payload: navOpenKeys
+    }) {
       return {
         ...state,
         ...navOpenKeys,
