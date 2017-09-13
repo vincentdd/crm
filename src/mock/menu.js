@@ -139,7 +139,7 @@ let database = [{
 }, {
   id: '8',
   bpid: '1',
-  name: 'crm账户管理',
+  name: 'CRM账户管理',
   route: '/crmaccmanag',
 }, {
   id: '9',
@@ -151,6 +151,11 @@ let database = [{
   bpid: '1',
   name: '线索管理',
   route: '/user',
+}, {
+  id: '11',
+  bpid: '1',
+  name: '员工管理',
+  route: '/employee',
 }, ]
 
 module.exports = {

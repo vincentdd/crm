@@ -20,6 +20,7 @@ const Account = ({
 	loading,
 	location,
 }) => {
+	//debugger;
 	const {
 		list,
 		pagination,
@@ -56,7 +57,7 @@ const Account = ({
 	const listProps = {
 		pagination,
 		dataSource: list,
-		loading: loading.effects['crmaccmanagcrmaccmanag/query'],
+		loading: loading.effects['crmaccmanag/query'],
 		onChange(page) {
 			dispatch(routerRedux.push({
 				pathname,
@@ -68,7 +69,6 @@ const Account = ({
 			}))
 		},
 		onEditItem(item) {
-			debugger;
 			dispatch({
 				type: 'crmaccmanag/showModal',
 				payload: {

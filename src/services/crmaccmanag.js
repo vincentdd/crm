@@ -13,7 +13,7 @@ const {
 export async function query(params) {
   return request({
     url: crmaccmanag,
-    method: 'post',
+    method: 'get',
     data: params,
   })
 }

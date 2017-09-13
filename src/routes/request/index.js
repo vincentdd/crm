@@ -28,83 +28,85 @@ const {
 } = api
 
 const requestOptions = [{
-    url: user.replace('/:id', ''),
-    desc: 'intercept request by mock.js',
-}, {
-    url: dashboard,
-    desc: 'intercept request by mock.js',
-}, {
-    url: userLogin,
-    method: 'post',
-    data: {
-        username: 'guest',
-        password: 'guest',
-    },
-    desc: 'intercept request by mock.js',
-}, {
-    url: users,
-    desc: 'intercept request by mock.js',
-}, {
-    url: user,
-    desc: 'intercept request by mock.js',
-    data: Mock.mock({
-        id: '@id',
-    }),
-}, {
-    url: user.replace('/:id', ''),
-    desc: 'intercept request by mock.js',
-    method: 'post',
-    data: Mock.mock({
-        name: '@cname',
-        nickName: '@last',
-        phone: /^1[34578]\d{9}$/,
-        'age|11-99': 1,
-        address: '@county(true)',
-        isMale: '@boolean',
-        email: '@email',
-        avatar() {
-            return Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', this.nickName.substr(0, 1))
+        url: user.replace('/:id', ''),
+        desc: 'intercept request by mock.js',
+    }, {
+        url: dashboard,
+        desc: 'intercept request by mock.js',
+    }, {
+        url: userLogin,
+        method: 'post',
+        data: {
+            username: 'guest',
+            password: 'guest',
         },
-    }),
-}, {
-    url: user,
-    desc: 'intercept request by mock.js',
-    method: 'patch',
-    data: Mock.mock({
-        id: '@id',
-        name: '@cname',
-    }),
-}, {
-    url: user,
-    desc: 'intercept request by mock.js',
-    method: 'delete',
-    data: Mock.mock({
-        id: '@id',
-    }),
-}, {
-    url: v1test,
-    desc: 'intercept request by mock.js',
-    method: 'get',
-}, {
-    url: v2test,
-    desc: 'intercept request by mock.js',
-    method: 'get',
-}, {
-    url: 'http://api.asilu.com/weather/',
-    desc: 'cross-domain request, but match config.baseURL(./src/utils/config.js)',
-}, {
-    url: 'http://www.zuimeitianqi.com/zuimei/queryWeather',
-    data: {
-        cityCode: '01010101',
+        desc: 'intercept request by mock.js',
+    }, {
+        url: users,
+        desc: 'intercept request by mock.js',
+    }, {
+        url: user,
+        desc: 'intercept request by mock.js',
+        data: Mock.mock({
+            id: '@id',
+        }),
+    }, {
+        url: user.replace('/:id', ''),
+        desc: 'intercept request by mock.js',
+        method: 'post',
+        data: Mock.mock({
+            name: '@cname',
+            nickName: '@last',
+            phone: /^1[34578]\d{9}$/,
+            'age|11-99': 1,
+            address: '@county(true)',
+            isMale: '@boolean',
+            email: '@email',
+            avatar() {
+                return Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', this.nickName.substr(0, 1))
+            },
+        }),
+    }, {
+        url: user,
+        desc: 'intercept request by mock.js',
+        method: 'patch',
+        data: Mock.mock({
+            id: '@id',
+            name: '@cname',
+        }),
+    }, {
+        url: user,
+        desc: 'intercept request by mock.js',
+        method: 'delete',
+        data: Mock.mock({
+            id: '@id',
+        }),
+    }, {
+        url: v1test,
+        desc: 'intercept request by mock.js',
+        method: 'get',
+    }, {
+        url: v2test,
+        desc: 'intercept request by mock.js',
+        method: 'get',
+    }, {
+        url: 'http://api.asilu.com/weather/',
+        desc: 'cross-domain request, but match config.baseURL(./src/utils/config.js)',
+    }, {
+        url: 'http://www.zuimeitianqi.com/zuimei/queryWeather',
+        data: {
+            cityCode: '01010101',
+        },
+        desc: 'cross-domain request by yahoo\'s yql',
     },
-    desc: 'cross-domain request by yahoo\'s yql',
-}, {
-    url: crmaccmanag,
-    data: {
-        pageNo: 1
-    },
-    method: 'post',
-}]
+    // {
+    //     url: crmaccmanag,
+    //     data: {
+    //         pageNo: 1
+    //     },
+    //     method: 'post',
+    // }
+]
 
 export default class RequestPage extends React.Component {
     constructor(props) {
@@ -120,7 +122,7 @@ export default class RequestPage extends React.Component {
     }
 
     handleRequest = () => {
-        debugger;
+        //        debugger;
         const {
             currntRequest
         } = this.state

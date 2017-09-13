@@ -96,7 +96,7 @@ const Filter = ({
     }
 
     return (
-        <Row gutter={24} type="flex" justify="space-between">
+    <Row gutter={24} type="flex" justify="space-between">
             <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }}>
                 {getFieldDecorator('name', { initialValue: name })(<Search placeholder="Search Name" size="large" onSearch={handleSubmit} />)}
             </Col>

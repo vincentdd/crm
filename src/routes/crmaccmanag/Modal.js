@@ -123,7 +123,7 @@ const modal = ({
                 required: true,
               },
             ],
-          })(<RangePicker />)}
+          })(<Input />)}
         </FormItem>
         <FormItem label="limit" hasFeedback {...formItemLayout}>
           {getFieldDecorator('limit', {

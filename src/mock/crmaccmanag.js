@@ -7,16 +7,21 @@ const {
 
 const crmaccmanag = Mock.mock({
   'data|100': [{
-    id: '@id',
-    title: '@title',
-    industry: '@word',
-    name: '@first @last',
-    mail: '@word',
-    tel: '@word',
-    date: '@dateTime',
-    indate: ['@dateTime', '@dateTime'],
-    'limit|10-200': 1,
-    'state': '@boolean',
+    customerId: '@id',
+    companyName: '@title',
+    industryName: '@word',
+    contactor: '@first @last',
+    contatorEmail: '@word',
+    contactPhone: '@word',
+    createTime: '@dateTime',
+    validPeriod: '@dateTime',
+    // [{
+    //   moment: '@dateTime'
+    // }, {
+    //   moment: '@dateTime'
+    // }],
+    'limitAcctNum|10-200': 1,
+    'status': '@boolean',
   }]
 })
 

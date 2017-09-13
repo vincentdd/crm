@@ -18,38 +18,42 @@ const List = ({
 
 	const columns = [{
 		title: '公司信息',
-		dataIndex: 'title',
+		dataIndex: 'companyName',
 	}, {
 		title: '行业',
-		dataIndex: 'industry',
+		dataIndex: 'industryName',
 	}, {
 		title: '联系人',
-		dataIndex: 'name',
+		dataIndex: 'contactor',
 	}, {
 		title: '联系人邮箱',
-		dataIndex: 'mail',
+		dataIndex: 'contatorEmail',
 	}, {
 		title: '联系人电话',
-		dataIndex: 'tel',
+		dataIndex: 'contactPhone',
 	}, {
 		title: '创建时间',
-		dataIndex: 'date',
+		dataIndex: 'createTime',
 	}, {
 		title: '有效期',
-		dataIndex: 'indate',
+		// render: (record) => {
+		// 		debugger;
+		// 		return <span>{`${record[1].moment} 至 ${record[2].moment}`}</span>;
+		// 	}
+		dataIndex: 'validPeriod',
 	}, {
 		title: '员工限制',
-		dataIndex: 'limit',
+		dataIndex: 'limitAcctNum',
 	}, {
 		title: '状态',
 		render: (record) => {
-			return <a href="#">{record.state === true ? '启用' : '禁用'}</a>
+			return <a href="#">{record.status === true ? '启用' : '禁用'}</a>
 		}
 	}, {
 		title: '操作',
 		render: (record) => {
-			return <span>
-      			<a href="#">{record.state === true?<Icon type="down" style={{ fontSize: 16, color: 'green' }} />:<Icon type="close-circle-o" style={{ fontSize: 16, color: 'green' }} />}</a>
+			return <span style={{display:"flex",justifyContent:"space-between"}}>
+      			<a href="#">{record.status === true?<Icon type="down" style={{ fontSize: 16, color: 'green' }} />:<Icon type="close-circle-o" style={{ fontSize: 16, color: 'green' }} />}</a>
       			<a href="#" >查看</a>
 				<a href="#" onClick={(e) => {handleClick(record, e,'3')}}>编辑</a>
     		</span>

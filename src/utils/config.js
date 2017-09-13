@@ -27,6 +27,8 @@ module.exports = {
     weather: `${APIV1}/weather`,
     v1test: `${APIV1}/test`,
     v2test: `${APIV2}/test`,
-    crmaccmanag: `${APIV3}/customer/list/get`,
+    crmaccmanag: `${APIV1}/crmaccmanag`,
+    employee: `${APIV3}/account/list`,
+    //crmaccmanag: `${APIV3}/customer/list/get`,
   },
 }
