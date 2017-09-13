@@ -41,7 +41,6 @@ const Account = ({
 		title: `${modalType === 'create' ? 'Create Account' : 'Update Account'}`,
 		wrapClassName: 'vertical-center-modal',
 		onOk(data) {
-			debugger;
 			dispatch({
 				type: `crmaccmanag/${modalType}`,
 				payload: data,
@@ -69,6 +68,7 @@ const Account = ({
 			}))
 		},
 		onEditItem(item) {
+			debugger;
 			dispatch({
 				type: 'crmaccmanag/showModal',
 				payload: {

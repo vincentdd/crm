@@ -1,5 +1,6 @@
 const APIV1 = '/api/v1'
 const APIV2 = '/api/v2'
+const APIV3 = 'http://www.izaiqi.com/ywy-manage'
 
 module.exports = {
   name: 'AntD Admin',
@@ -13,6 +14,7 @@ module.exports = {
   apiPrefix: '/api/v1',
   APIV1,
   APIV2,
+  APIV3,
   api: {
     userLogin: `${APIV1}/user/login`,
     userLogout: `${APIV1}/user/logout`,
@@ -25,6 +27,6 @@ module.exports = {
     weather: `${APIV1}/weather`,
     v1test: `${APIV1}/test`,
     v2test: `${APIV2}/test`,
-    crmaccmanag: `${APIV1}/crmaccmanag`,
+    crmaccmanag: `${APIV3}/customer/list/get`,
   },
 }

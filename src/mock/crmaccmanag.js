@@ -14,7 +14,7 @@ const crmaccmanag = Mock.mock({
     mail: '@word',
     tel: '@word',
     date: '@dateTime',
-    indate: '@dateTime',
+    indate: ['@dateTime', '@dateTime'],
     'limit|10-200': 1,
     'state': '@boolean',
   }]
