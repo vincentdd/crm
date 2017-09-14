@@ -84,6 +84,8 @@ const fetch = (options) => {
 
 export default function request(options) {
   //debugger;
+=======
+>>>>>>> 2bfa38b262b144c87c0ee42057abb9b4a2002921
   if (options.url && options.url.indexOf('//') > -1) {
     console.log(options.url.split('//')[0]);
     console.log(options.url.split('//')[1].split('/')[0]);

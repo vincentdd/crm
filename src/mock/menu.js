@@ -156,6 +156,8 @@ let database = [{
   bpid: '1',
   name: '员工管理',
   route: '/employee',
+  route: '/account',
+>>>>>>> 2bfa38b262b144c87c0ee42057abb9b4a2002921
 }, ]
 
 module.exports = {

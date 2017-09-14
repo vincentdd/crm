@@ -145,6 +145,14 @@ const Routers = function({
         }, 'crmaccmanag')
       },
     }, {
+      path: 'account',
+      getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+          registerModel(app, require('models/account'))
+          cb(null, require('routes/account/'))
+        }, 'account')
+      },
+    }, {
       path: '*',
       getComponent(nextState, cb) {
         require.ensure([], (require) => {
