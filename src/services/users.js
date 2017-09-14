@@ -11,7 +11,6 @@ const {
 } = api
 
 export async function query(params) {
-  debugger;
   return request({
     url: users,
     method: 'get',

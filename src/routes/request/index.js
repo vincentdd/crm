@@ -120,7 +120,6 @@ export default class RequestPage extends React.Component {
     }
 
     handleRequest = () => {
-        debugger;
         const {
             currntRequest
         } = this.state

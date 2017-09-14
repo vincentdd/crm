@@ -151,6 +151,11 @@ let database = [{
   bpid: '1',
   name: '线索管理',
   route: '/user',
+}, {
+  id: '11',
+  bpid: '1',
+  name: '员工管理',
+  route: '/account',
 }, ]
 
 module.exports = {
