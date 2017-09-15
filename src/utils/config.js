@@ -3,10 +3,10 @@ const APIV2 = '/api/v2'
 const APIV3 = 'http://www.izaiqi.com/ywy-manage'
 
 module.exports = {
-  name: 'AntD Admin',
-  prefix: 'antdAdmin',
-  footerText: 'Ant Design Admin  © 2017 zuiidea',
-  logo: '/logo.png',
+  name: 'CRM',
+  prefix: 'CRM管理平台',
+  footerText: '一万亿  © 2017',
+  // logo: '/logo.png',
   iconFontCSS: '/iconfont.css',
   iconFontJS: '/iconfont.js',
   CORS: [],

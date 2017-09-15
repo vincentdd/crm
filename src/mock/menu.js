@@ -8,20 +8,14 @@ const {
 let database = [{
   id: '1',
   icon: 'laptop',
-  name: 'Dashboard',
-  route: '/dashboard',
+  name: 'CRM账号管理',
+  route: '/crmaccmanag',
 }, {
   id: '2',
   bpid: '1',
-  name: 'Users',
+  name: '员工管理',
   icon: 'user',
-  route: '/user',
-}, {
-  id: '7',
-  bpid: '1',
-  name: 'Posts',
-  icon: 'shopping-cart',
-  route: '/post',
+  route: '/account',
 }, {
   id: '21',
   mpid: '-1',
@@ -31,13 +25,13 @@ let database = [{
 }, {
   id: '3',
   bpid: '1',
-  name: 'Request',
+  name: '线索池',
   icon: 'api',
   route: '/request',
 }, {
   id: '4',
   bpid: '1',
-  name: 'UI Element',
+  name: '员工',
   icon: 'camera-o',
 }, {
   id: '41',
@@ -84,7 +78,7 @@ let database = [{
 }, {
   id: '5',
   bpid: '1',
-  name: 'Recharts',
+  name: '线索请求管理',
   icon: 'code-o',
 }, {
   id: '51',
@@ -110,7 +104,7 @@ let database = [{
 }, {
   id: '6',
   bpid: '1',
-  name: 'Test Navigation',
+  name: '导入线索管理',
   icon: 'setting',
 }, {
   id: '61',
@@ -136,27 +130,14 @@ let database = [{
   mpid: '62',
   name: 'Test Navigation22',
   route: '/navigation/navigation2/navigation2',
-}, {
-  id: '8',
-  bpid: '1',
-  name: 'CRM账户管理',
-  route: '/crmaccmanag',
-}, {
-  id: '9',
-  bpid: '1',
-  name: '客户账号管理',
-  route: '/user',
-}, {
-  id: '10',
-  bpid: '1',
-  name: '线索管理',
-  route: '/user',
-}, {
-  id: '11',
-  bpid: '1',
-  name: '员工管理',
-  route: '/account',
-}, ]
+},
+  {
+    id: '7',
+    bpid: '1',
+    name: '行业管理',
+    icon: 'shopping-cart',
+    route: '/post',
+  },]
 
 module.exports = {
 
