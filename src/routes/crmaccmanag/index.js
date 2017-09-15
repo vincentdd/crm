@@ -14,7 +14,7 @@ import List from './List';
 import Modal from './Modal'
 import Filter from './Filter'
 
-const Account = ({
+const Crmaccmanag = ({
 	crmaccmanag,
 	dispatch,
 	loading,
@@ -122,8 +122,11 @@ const Account = ({
 	);
 }
 
-Account.propTypes = {
-	userListProps: PropTypes.object
+Crmaccmanag.propTypes = {
+	crmaccmanag: PropTypes.object,
+	dispatch: PropTypes.object,
+	loading: PropTypes.object,
+	location: PropTypes.object,
 };
 
 export default connect(({
@@ -132,4 +135,4 @@ export default connect(({
 }) => ({
 	crmaccmanag,
 	loading
-}))(Account)
+}))(Crmaccmanag)

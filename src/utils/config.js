@@ -28,10 +28,7 @@ module.exports = {
     v1test: `${APIV1}/test`,
     v2test: `${APIV2}/test`,
     crmaccmanag: `${APIV1}/crmaccmanag`,
-    employee: `${APIV3}/account/list`,
     //crmaccmanag: `${APIV3}/customer/list/get`,
-=======
-    account:`${APIV3}/account/list`,
->>>>>>> 2bfa38b262b144c87c0ee42057abb9b4a2002921
+    account: `${APIV3}/account/list`,
   },
 }

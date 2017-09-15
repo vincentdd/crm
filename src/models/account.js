@@ -20,7 +20,7 @@ export default modelExtend(pageModel, {
 	namespace: 'account',
 
 	state: {
-		list:[],
+		list: [],
 		total: null,
 		loading: false, // 控制加载状态
 		current: null, // 当前分页信息
@@ -35,10 +35,13 @@ export default modelExtend(pageModel, {
 			history
 		}) {
 			history.listen((location) => {
+				console.log(location.query);
+				debugger;
 				if (location.pathname === '/account') {
 					dispatch({
 						type: 'query',
 						payload: location.query,
+						// payload: 'pageNo=1',
 					})
 				}
 			})
@@ -50,8 +53,13 @@ export default modelExtend(pageModel, {
 			call,
 			put
 		}) {
+			const temp = {
+				page: "1",
+				pageSize: "10"
+			}
+			if (payload.page === undefined)
+				payload = temp;
 			const data = yield call(query, payload)
-			debugger;
 			if (data.success) {
 				yield put({
 					type: 'querySuccess',
