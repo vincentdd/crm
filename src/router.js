@@ -20,11 +20,11 @@ const Routers = function({
     component: App,
     getIndexRoute(nextState, cb) {
       require.ensure([], (require) => {
-        registerModel(app, require('models/dashboard'))
+        registerModel(app, require('models/crmaccmanag'))
         cb(null, {
-          component: require('routes/dashboard/')
+          component: require('routes/crmaccmanag/')
         })
-      }, 'dashboard')
+      }, 'crmaccmanag')
     },
     childRoutes: [{
       path: 'dashboard',

@@ -36,7 +36,8 @@ export default modelExtend(pageSizeModel, {
       })
     },
   },
-  effects: { * query({
+  effects: {
+    * query({
       payload,
     }, {
       call,
@@ -52,6 +53,14 @@ export default modelExtend(pageSizeModel, {
           },
         },
       })
+    },
+    * querySuccess({
+      payload,
+    }, {
+      call,
+      put
+    }) {
+      console.log('querySuccess-------------------------');
     },
   },
   reducers: {
