@@ -5,6 +5,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import { Row, Col, Card } from 'antd'
+import styles from './index.less'
 
 
 const Clue = ({clue, loading}) =>{
@@ -13,7 +14,7 @@ const Clue = ({clue, loading}) =>{
   console.log(list);
   console.log(page);
 
-  const clueCards = list.map((item, key) => (<Col className = "clue_card" key={key} span={6}>
+  const clueCards = list.map((item, key) => (<Col className = {styles.clue_card} key={key} span={6}>
     <Card title={item.clueName} >
       <p>产品关键字: {item.clueName}</p>
       <p>行业: {item.clueName}</p>
@@ -31,6 +32,11 @@ const Clue = ({clue, loading}) =>{
       </Row>
     </div>
   )
+}
+
+Clue.propTypes = {
+  clue: PropTypes.object,
+  loading: PropTypes.object,
 }
 
 export default connect(({ clue, loading }) => ({ clue, loading }))(Clue)
