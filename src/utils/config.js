@@ -29,6 +29,6 @@ module.exports = {
     v2test: `${APIV2}/test`,
     crmaccmanag: `${APIV1}/crmaccmanag`,
     //crmaccmanag: `${APIV3}/customer/list/get`,
-    account: `${APIV3}/account/list`,
+    account: `${APIV1}/account`,
   },
 }

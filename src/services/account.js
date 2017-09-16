@@ -13,7 +13,7 @@ const {
 export async function query(params) {
     return request({
         url: account,
-        method: 'post',
+        method: 'get',
         data: params,
     })
 }

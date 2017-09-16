@@ -12,7 +12,6 @@ const {
 
 export async function query(params) {
   console.log(params);
-  debugger;
   return request({
     url: users,
     method: 'get',

@@ -35,13 +35,10 @@ export default modelExtend(pageModel, {
 			history
 		}) {
 			history.listen((location) => {
-				console.log(location.query);
-				debugger;
 				if (location.pathname === '/account') {
 					dispatch({
 						type: 'query',
 						payload: location.query,
-						// payload: 'pageNo=1',
 					})
 				}
 			})
@@ -54,11 +51,15 @@ export default modelExtend(pageModel, {
 			put
 		}) {
 			const temp = {
-				page: "1",
-				pageSize: "10"
+				pageNo: "1",
+				//pageSize: "10"
 			}
 			if (payload.page === undefined)
 				payload = temp;
+			else
+				payload = {
+					pageNo: payload.page
+				}
 			const data = yield call(query, payload)
 			if (data.success) {
 				yield put({

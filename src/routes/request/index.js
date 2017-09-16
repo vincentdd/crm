@@ -98,7 +98,14 @@ const requestOptions = [{
             cityCode: '01010101',
         },
         desc: 'cross-domain request by yahoo\'s yql',
-    },
+    }, {
+        url: 'http://www.izaiqi.com/ywy-manage/account/list',
+        data: {
+            pageNo: '1',
+        },
+        //method: 'post',
+        desc: 'cross-domain request by yahoo\'s yql',
+    }
     // {
     //     url: crmaccmanag,
     //     data: {
