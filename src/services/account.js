@@ -15,7 +15,7 @@ export async function query(params) {
     debugger;
     return request({
         url: account,
-        method: 'post',
+        method: 'get',
         data: params,
     })
 }

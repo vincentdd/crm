@@ -21,7 +21,6 @@ const fetch = (options) => {
     } = options
 
     const cloneData = lodash.cloneDeep(data);
-    //debugger;
     try {
         let domin = ''
         if (url.match(/[a-zA-z]+:\/\/[^/]*/)) {
@@ -62,7 +61,6 @@ const fetch = (options) => {
         url = `http://query.yahooapis.com/v1/public/yql?q=select * from json where url='${options.url}?${encodeURIComponent(qs.stringify(options.data))}'&format=json`
         data = null
     }
-
     switch (method.toLowerCase()) {
         case 'get':
             return axios.get(url, {
@@ -73,7 +71,9 @@ const fetch = (options) => {
                 data: cloneData,
             })
         case 'post':
-            return axios.post(url, cloneData, {'Content-Type':'application/json'})
+            return axios.post(url, cloneData, {
+                'Content-Type': 'application/json'
+            })
         case 'put':
             return axios.put(url, cloneData)
         case 'patch':
@@ -84,11 +84,11 @@ const fetch = (options) => {
 }
 
 export default function request(options) {
-    debugger;
-    if (options.data !== undefined && options.data.page !== undefined) {
-        console.log(options.url);
-        //options.url = `${options.url}?${options.data.page}`;
-    }
+    // debugger;
+    // if (options.data !== undefined && options.data.page !== undefined) {
+    //     console.log(options.url);
+    //     //options.url = `${options.url}?${options.data.page}`;
+    // }
     if (options.url && options.url.indexOf('//') > -1) {
         console.log(options.url.split('//')[0]);
         console.log(options.url.split('//')[1].split('/')[0]);

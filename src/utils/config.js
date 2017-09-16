@@ -30,6 +30,6 @@ module.exports = {
     crmaccmanag: `${APIV1}/crmaccmanag`,
     clue: `${APIV1}/clue`,
     //crmaccmanag: `${APIV3}/customer/list/get`,
-    account: `${APIV3}/account/list`,
+    account: `${APIV1}/account`,
   },
 }

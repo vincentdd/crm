@@ -15,12 +15,11 @@ import Modal from './Modal'
 import Filter from './Filter'
 
 const Crmaccmanag = ({
-	crmaccmanag,
 	dispatch,
 	loading,
+	crmaccmanag,
 	location,
 }) => {
-	//debugger;
 	const {
 		list,
 		pagination,
@@ -127,7 +126,7 @@ Crmaccmanag.propTypes = {
 	dispatch: PropTypes.object,
 	loading: PropTypes.object,
 	location: PropTypes.object,
-};
+}
 
 export default connect(({
 	crmaccmanag,

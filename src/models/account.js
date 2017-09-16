@@ -9,6 +9,7 @@ import {
 	create,
 	query,
   querylist,
+	querylist,
 } from 'services/account'
 import {
 	pageModel
@@ -36,11 +37,16 @@ export default modelExtend(pageModel, {
 			history
 		}) {
 			history.listen((location) => {
+				if (location.pathname === '/account') {
+					dispatch({
+						type: 'query',
+						payload: location.query,
 				console.log(location.query);
 				// debugger;
 				if (location.pathname === '/account') {
 					dispatch({
 						type: 'query',
+>>>>>>> 6a99edceea82476388ff26b2c8664e6a28e51d89
 					})
 				}
 			})
@@ -52,7 +58,19 @@ export default modelExtend(pageModel, {
 			call,
 			put
 		}) {
+			const temp = {
+				pageNo: "1",
+				//pageSize: "10"
+			}
+			if (payload.page === undefined)
+				payload = temp;
+			else
+				payload = {
+					pageNo: payload.page
+				}
+			const data = yield call(query, payload)
 			const data = yield call(querylist, payload)
+>>>>>>> 6a99edceea82476388ff26b2c8664e6a28e51d89
 			if (data.success) {
 				yield put({
 					type: 'querySuccess',
@@ -112,4 +130,5 @@ export default modelExtend(pageModel, {
 		// deleteSuccess() {},
 		// updateSuccess() {},
 	}
+})
 })
