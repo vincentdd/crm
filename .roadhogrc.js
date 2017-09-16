@@ -51,7 +51,7 @@ export default {
     }
   },
   dllPlugin : {
-    exclude: ["babel-runtime"],
+    exclude: ["babel-runtime", "roadhog"],
     include: ["dva/router", "dva/saga", "dva/fetch"]
   }
 }
