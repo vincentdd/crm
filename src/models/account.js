@@ -7,7 +7,8 @@ import {
 } from 'utils'
 import {
 	create,
-	query
+	query,
+  querylist,
 } from 'services/account'
 import {
 	pageModel
@@ -36,12 +37,10 @@ export default modelExtend(pageModel, {
 		}) {
 			history.listen((location) => {
 				console.log(location.query);
-				debugger;
+				// debugger;
 				if (location.pathname === '/account') {
 					dispatch({
 						type: 'query',
-						payload: location.query,
-						// payload: 'pageNo=1',
 					})
 				}
 			})
@@ -53,13 +52,7 @@ export default modelExtend(pageModel, {
 			call,
 			put
 		}) {
-			const temp = {
-				page: "1",
-				pageSize: "10"
-			}
-			if (payload.page === undefined)
-				payload = temp;
-			const data = yield call(query, payload)
+			const data = yield call(querylist, payload)
 			if (data.success) {
 				yield put({
 					type: 'querySuccess',

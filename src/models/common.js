@@ -47,8 +47,42 @@ const pageModel = modelExtend(model, {
 
 })
 
+const pageSizeModel = modelExtend(model, {
+
+  state: {
+    list: [],
+    page: {
+      currentPage: 0,
+      totalPage: 0,
+      pageSize: 1,
+      totalCount: 0,
+    },
+  },
+
+  reducers: {
+    querySuccess(state, {
+      payload
+    }) {
+      const {
+        list,
+        page
+      } = payload
+      console.log(payload);
+      return {
+        ...state,
+        list,
+        page: {
+          ...state.page,
+          ...page,
+        },
+      }
+    },
+  },
+})
+
 
 module.exports = {
   model,
   pageModel,
+  pageSizeModel,
 }

@@ -152,7 +152,16 @@ const Routers = function({
           cb(null, require('routes/account/'))
         }, 'account')
       },
-    }, {
+    },
+      {
+        path: 'clue',
+        getComponent(nextState, cb) {
+          require.ensure([], (require) => {
+            registerModel(app, require('models/clue'))
+            cb(null, require('routes/clue/'))
+          }, 'clue')
+        },
+      }, {
       path: '*',
       getComponent(nextState, cb) {
         require.ensure([], (require) => {

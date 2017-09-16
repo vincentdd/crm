@@ -27,7 +27,7 @@ let database = [{
   bpid: '1',
   name: '线索池',
   icon: 'api',
-  route: '/request',
+  route: '/clue',
 }, {
   id: '4',
   bpid: '1',
