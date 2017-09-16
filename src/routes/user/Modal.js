@@ -36,6 +36,7 @@ const modal = ({
       if (errors) {
         return
       }
+      console.log(item);
       const data = {
         ...getFieldsValue(),
         key: item.key,
