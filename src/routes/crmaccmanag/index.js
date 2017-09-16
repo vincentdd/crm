@@ -124,7 +124,7 @@ const Crmaccmanag = ({
 Crmaccmanag.propTypes = {
 	crmaccmanag: PropTypes.object,
 	loading: PropTypes.object,
-	dispatch: PropTypes.object,
+	dispatch: PropTypes.func,
 	location: PropTypes.object,
 }
 
