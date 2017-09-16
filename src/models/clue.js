@@ -1,10 +1,16 @@
 /**
  * Created by wxy on 2017/9/16.
  */
-import { parse } from 'qs'
+import {
+  parse
+} from 'qs'
 import modelExtend from 'dva-model-extend'
-import { query } from 'services/clue'
-import { pageSizeModel } from 'models/common'
+import {
+  query
+} from 'services/clue'
+import {
+  pageSizeModel
+} from 'models/common'
 
 export default modelExtend(pageSizeModel, {
   namespace: 'clue',
@@ -14,26 +20,35 @@ export default modelExtend(pageSizeModel, {
   },
 
   subscriptions: {
-    setup ({ dispatch, history }) {
-      history.listen(({ pathname }) => {
+    setup({
+      dispatch,
+      history
+    }) {
+      history.listen(({
+        pathname
+      }) => {
         if (pathname === '/clue') {
-          dispatch({ type: 'query' })
+          dispatch({
+            type: 'query'
+          })
         }
       })
     },
   },
-  effects: {
-    * query ({
+  effects: { * query({
       payload,
-    }, { call, put }) {
-      debugger;
+    }, {
+      call,
+      put
+    }) {
       const data = yield call(query, parse(payload))
       console.log(data);
       yield put({
         type: 'querySuccess',
         payload: {
           list: data.dataList,
-          page: {...data.page},
+          page: {...data.page
+          },
         },
       })
     },

@@ -61,9 +61,9 @@ const modal = ({
     return (
         <Modal {...modalOpts}>
       <Form layout="horizontal">
-        <FormItem label="Title" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('title', {
-            initialValue: item.title,
+        <FormItem label="员工编号" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('accountNo', {
+            initialValue: item.accountNo,
             rules: [
               {
                 required: true,
@@ -71,19 +71,9 @@ const modal = ({
             ],
           })(<Input />)}
         </FormItem>
-        <FormItem label="Industry" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('industry', {
-            initialValue: item.industry,
-            rules: [
-              {
-                required: true,
-              },
-            ],
-          })(<Input />)}
-        </FormItem>
-        <FormItem label="Name" hasFeedback {...formItemLayout}>
+        <FormItem label="姓名" hasFeedback {...formItemLayout}>
           {getFieldDecorator('name', {
-      initialValue: item.name,
+            initialValue: item.name,
             rules: [
               {
                 required: true,
@@ -91,21 +81,9 @@ const modal = ({
             ],
           })(<Input />)}
         </FormItem>
-        <FormItem label="E-mail" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('mail', {
-            initialValue: item.mail,
-            rules: [
-              {
-                required: true,
-                pattern: /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/,
-                message: 'The input is not valid E-mail!',
-              },
-            ],
-          })(<Input />)}
-        </FormItem>
-        <FormItem label="Phone" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('tel', {
-            initialValue: item.tel,
+        <FormItem label="手机" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('account', {
+      initialValue: item.account,
             rules: [
               {
                 required: true,
@@ -115,30 +93,60 @@ const modal = ({
             ],
           })(<Input />)}
         </FormItem>
-        <FormItem label="indate" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('indate', {
-            initialValue: item.indate,
-            rules: [
-              {
-                required: true,
-              },
-            ],
-          })(<RangePicker />)}
-        </FormItem>
-        <FormItem label="limit" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('limit', {
-            initialValue: item.limit,
+        <FormItem label="电话" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('contactPhone', {
+            initialValue: item.contactPhone,
             rules: [
               {
                 required: true,
                 type: 'number',
               },
             ],
-          })(<InputNumber min={1} max={500}  />)}
+          })(<Input />)}
         </FormItem>
-        <FormItem label="state" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('state', {
-            initialValue: item.state,
+        <FormItem label="部门" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('department', {
+            initialValue: item.department,
+            rules: [
+              {
+                required: true,
+              },
+            ],
+          })(<Input />)}
+        </FormItem>
+        <FormItem label="职位" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('job', {
+            initialValue: item.job,
+            rules: [
+              {
+                required: true,
+              },
+            ],
+          })(<Input />)}
+        </FormItem>
+        <FormItem label="创建时间" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('createTime', {
+            initialValue: item.createTime,
+            rules: [
+              {
+                required: true,
+              },
+            ],
+          })(<Input />)}
+        </FormItem>
+        <FormItem label="负责行业" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('industryNames', {
+            initialValue: item.industryNames,
+            rules: [
+              {
+                required: true,
+              },
+            ],
+          })(<Input />)}
+        </FormItem>
+        <FormItem label="状态" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('status', {
+            initialValue: item.status,
             rules: [
               {
                 required: true,

@@ -150,7 +150,6 @@ export default modelExtend(pageModel, {
             const id = yield select(({
                 user
             }) => user.currentItem.id)
-            debugger;
             const newUser = {...payload,
                 id
             }

@@ -61,6 +61,7 @@ const fetch = (options) => {
         url = `http://query.yahooapis.com/v1/public/yql?q=select * from json where url='${options.url}?${encodeURIComponent(qs.stringify(options.data))}'&format=json`
         data = null
     }
+    console.log(url);
     switch (method.toLowerCase()) {
         case 'get':
             return axios.get(url, {
@@ -94,15 +95,15 @@ export default function request(options) {
         console.log(options.url.split('//')[1].split('/')[0]);
         const origin = `${options.url.split('//')[0]}//${options.url.split('//')[1].split('/')[0]}`
         console.log(origin);
-        // if (window.location.origin !== origin) {
-        //     if (CORS && CORS.indexOf(origin) > -1) {
-        //         options.fetchType = 'CORS'
-        //     } else if (YQL && YQL.indexOf(origin) > -1) {
-        //         options.fetchType = 'YQL'
-        //     } else {
-        //         options.fetchType = 'JSONP'
-        //     }
-        // }
+        if (window.location.origin !== origin) {
+            if (CORS && CORS.indexOf(origin) > -1) {
+                options.fetchType = 'CORS'
+            } else if (YQL && YQL.indexOf(origin) > -1) {
+                options.fetchType = 'YQL'
+            } else {
+                options.fetchType = 'JSONP'
+            }
+        }
     }
 
     return fetch(options).then((response) => {

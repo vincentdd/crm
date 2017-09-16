@@ -94,14 +94,14 @@ export default modelExtend(pageModel, {
 			call,
 			put
 		}) {
-			const id = yield select(({
-				user
-			}) => user.currentItem.id)
-			debugger;
-			const newUser = {...payload,
-				id
+			const customerId = yield select(({
+				crmaccmanag
+			}) => crmaccmanag.currentItem.customerId)
+			const newCustomer = {...payload,
+				customerId
 			}
-			const data = yield call(update, newUser)
+			console.log(customerId);
+			const data = yield call(update, newCustomer)
 			if (data.success) {
 				yield put({
 					type: 'hideModal'

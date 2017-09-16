@@ -7,7 +7,7 @@ const {
 } = config
 
 let usersListData = Mock.mock({
-  'data|80-100': [{
+  'data|100': [{
     id: '@id',
     name: '@name',
     nickName: '@last',
