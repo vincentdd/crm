@@ -130,14 +130,19 @@ let database = [{
   mpid: '62',
   name: 'Test Navigation22',
   route: '/navigation/navigation2/navigation2',
-},
-  {
-    id: '7',
-    bpid: '1',
-    name: '行业管理',
-    icon: 'shopping-cart',
-    route: '/post',
-  },]
+}, {
+  id: '7',
+  bpid: '1',
+  name: '行业管理',
+  icon: 'shopping-cart',
+  route: '/post',
+}, {
+  id: '8',
+  bpid: '1',
+  name: 'user',
+  icon: '',
+  route: '/user',
+}, ]
 
 module.exports = {
 

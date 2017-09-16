@@ -12,24 +12,11 @@ const {
 } = api
 
 export async function query(params) {
-    debugger;
     return request({
         url: account,
         method: 'get',
         data: params,
     })
-}
-
-export async function querylist(params = {}) {
-  console.log(params);
-  debugger;
-  return axios({
-    url: account,
-    method: 'post',
-    data: params,
-    params: {pageNo: 1},
-    headers: {'Content-Type':'application/json;charset=UTF-8'},
-  })
 }
 
 export async function create(params) {

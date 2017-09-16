@@ -68,7 +68,7 @@ const List = ({
         		scroll={{ x: 1200 }}
         		columns={columns}
         		simple
-        		rowKey={record => record.id}
+        		rowKey={record => record.customerId}
       		/>
     	</div>
 	)

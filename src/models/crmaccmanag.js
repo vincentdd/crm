@@ -7,7 +7,8 @@ import {
 } from 'utils'
 import {
 	create,
-	query
+	query,
+	update
 } from 'services/crmaccmanag'
 import {
 	pageModel
@@ -85,7 +86,33 @@ export default modelExtend(pageModel, {
 				throw data
 			}
 		},
-		// 	* 'delete' () {},
+
+		* update({
+			payload
+		}, {
+			select,
+			call,
+			put
+		}) {
+			const id = yield select(({
+				user
+			}) => user.currentItem.id)
+			debugger;
+			const newUser = {...payload,
+				id
+			}
+			const data = yield call(update, newUser)
+			if (data.success) {
+				yield put({
+					type: 'hideModal'
+				})
+				yield put({
+					type: 'query'
+				})
+			} else {
+				throw data
+			}
+		},
 		//	* update() {}
 	},
 	reducers: {

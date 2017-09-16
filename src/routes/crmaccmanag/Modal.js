@@ -35,13 +35,14 @@ const modal = ({
   ...modalProps
 }) => {
   const handleOk = () => {
+    debugger;
     validateFields((errors) => {
       if (errors) {
         return
       }
       const data = {
         ...getFieldsValue(),
-        key: item.key,
+        key: item.customerId,
       }
       onOk(data);
     })
@@ -55,9 +56,9 @@ const modal = ({
   return (
     <Modal {...modalOpts}>
       <Form layout="horizontal">
-        <FormItem label="Title" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('title', {
-            initialValue: item.title,
+        <FormItem label="公司信息" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('companyName', {
+            initialValue: item.companyName,
             rules: [
               {
                 required: true,
@@ -65,9 +66,9 @@ const modal = ({
             ],
           })(<Input />)}
         </FormItem>
-        <FormItem label="Industry" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('industry', {
-            initialValue: item.industry,
+        <FormItem label="行业" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('industryName', {
+            initialValue: item.industryName,
             rules: [
               {
                 required: true,
@@ -75,9 +76,9 @@ const modal = ({
             ],
           })(<Input />)}
         </FormItem>
-        <FormItem label="Name" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('name', {
-      initialValue: item.name,
+        <FormItem label="联系人" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('contactor', {
+      initialValue: item.contactor,
             rules: [
               {
                 required: true,
@@ -85,9 +86,9 @@ const modal = ({
             ],
           })(<Input />)}
         </FormItem>
-        <FormItem label="E-mail" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('mail', {
-            initialValue: item.mail,
+        <FormItem label="联系人邮箱" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('contatorEmail', {
+            initialValue: item.contatorEmail,
             rules: [
               {
                 required: true,
@@ -97,9 +98,9 @@ const modal = ({
             ],
           })(<Input />)}
         </FormItem>
-        <FormItem label="Phone" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('tel', {
-            initialValue: item.tel,
+        <FormItem label="联系人电话" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('contactPhone', {
+            initialValue: item.contactPhone,
             rules: [
               {
                 required: true,
@@ -109,9 +110,9 @@ const modal = ({
             ],
           })(<Input />)}
         </FormItem>
-        <FormItem label="indate" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('indate', {
-            initialValue: item.indate,
+        <FormItem label="创建时间" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('createTime', {
+            initialValue: item.createTime,
             rules: [
               {
                 required: true,
@@ -119,9 +120,19 @@ const modal = ({
             ],
           })(<Input />)}
         </FormItem>
-        <FormItem label="limit" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('limit', {
-            initialValue: item.limit,
+        <FormItem label="有效期" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('validPeriod', {
+            initialValue: item.validPeriod,
+            rules: [
+              {
+                required: true,
+              },
+            ],
+          })(<Input />)}
+        </FormItem>
+        <FormItem label="员工限制" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('limitAcctNum', {
+            initialValue: item.limitAcctNum,
             rules: [
               {
                 required: true,
@@ -130,9 +141,9 @@ const modal = ({
             ],
           })(<InputNumber min={1} max={500}  />)}
         </FormItem>
-        <FormItem label="state" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('state', {
-            initialValue: item.state,
+        <FormItem label="状态" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('status', {
+            initialValue: item.status,
             rules: [
               {
                 required: true,

@@ -7,11 +7,10 @@ const {
 
 const crmaccmanag = Mock.mock({
   'data|100': [{
-    customerId: '@id',
     companyName: '@title',
     industryName: '@word',
     contactor: '@first @last',
-    contatorEmail: '@word',
+    contatorEmail: '@email',
     contactPhone: '@word',
     createTime: '@dateTime',
     validPeriod: '@dateTime',
@@ -22,6 +21,7 @@ const crmaccmanag = Mock.mock({
     // }],
     'limitAcctNum|10-200': 1,
     'status': '@boolean',
+    customerId: '@id',
   }]
 })
 
