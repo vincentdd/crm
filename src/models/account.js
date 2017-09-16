@@ -9,6 +9,7 @@ import {
 	create,
 	query,
   querylist,
+	querylist,
 } from 'services/account'
 import {
 	pageModel
@@ -36,12 +37,10 @@ export default modelExtend(pageModel, {
 			history
 		}) {
 			history.listen((location) => {
-<<<<<<< HEAD
 				if (location.pathname === '/account') {
 					dispatch({
 						type: 'query',
 						payload: location.query,
-=======
 				console.log(location.query);
 				// debugger;
 				if (location.pathname === '/account') {
@@ -59,7 +58,6 @@ export default modelExtend(pageModel, {
 			call,
 			put
 		}) {
-<<<<<<< HEAD
 			const temp = {
 				pageNo: "1",
 				//pageSize: "10"
@@ -71,7 +69,6 @@ export default modelExtend(pageModel, {
 					pageNo: payload.page
 				}
 			const data = yield call(query, payload)
-=======
 			const data = yield call(querylist, payload)
 >>>>>>> 6a99edceea82476388ff26b2c8664e6a28e51d89
 			if (data.success) {
@@ -133,4 +130,5 @@ export default modelExtend(pageModel, {
 		// deleteSuccess() {},
 		// updateSuccess() {},
 	}
+})
 })

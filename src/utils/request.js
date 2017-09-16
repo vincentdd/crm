@@ -61,8 +61,6 @@ const fetch = (options) => {
         url = `http://query.yahooapis.com/v1/public/yql?q=select * from json where url='${options.url}?${encodeURIComponent(qs.stringify(options.data))}'&format=json`
         data = null
     }
-<<<<<<< HEAD
-=======
 
 >>>>>>> 6a99edceea82476388ff26b2c8664e6a28e51d89
     switch (method.toLowerCase()) {
@@ -75,7 +73,9 @@ const fetch = (options) => {
                 data: cloneData,
             })
         case 'post':
-            return axios.post(url, cloneData, {'Content-Type':'application/json'})
+            return axios.post(url, cloneData, {
+                'Content-Type': 'application/json'
+            })
         case 'put':
             return axios.put(url, cloneData)
         case 'patch':
@@ -147,4 +147,5 @@ export default function request(options) {
             message: msg
         })
     })
+}
 }
