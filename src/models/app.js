@@ -31,8 +31,8 @@ export default {
     menu: [{
       id: 1,
       icon: 'laptop',
-      name: 'Dashboard',
-      router: '/dashboard',
+      name: 'crm账号管理',
+      router: '/crmaccmanag',
     }, ],
     menuPopoverVisible: false,
     siderFold: window.localStorage.getItem(`${prefix}siderFold`) === 'true',
@@ -123,7 +123,7 @@ export default {
         })
         if (location.pathname === '/login') {
           yield put(routerRedux.push({
-            pathname: '/dashboard',
+            pathname: '/crmaccmanag',
           }))
         }
       } else if (config.openPages && config.openPages.indexOf(locationPathname) < 0) {

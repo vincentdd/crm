@@ -10,6 +10,7 @@ export default modelExtend(pageSizeModel, {
   namespace: 'clue',
 
   state: {
+    treeSelectValue: '',
     list: [],
   },
 
@@ -37,5 +38,16 @@ export default modelExtend(pageSizeModel, {
         },
       })
     },
+  },
+  reducers: {
+
+    treeUpdate(state, {payload}) {
+      console.log(state);
+      console.log(payload);
+      return {...state,
+        ...payload
+      }
+    },
+
   },
 })
