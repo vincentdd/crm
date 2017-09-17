@@ -16,7 +16,6 @@ export async function query(params) {
         url: account,
         method: 'post',
         data: params,
-        params: params,
     })
 }
 

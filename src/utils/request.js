@@ -17,8 +17,7 @@ const fetch = (options) => {
         method = 'get',
             data,
             fetchType,
-            url,
-            params
+            url
     } = options
 
     const cloneData = lodash.cloneDeep(data);
@@ -74,8 +73,16 @@ const fetch = (options) => {
             })
       case 'post':
             let config = {}
-            if(params){
-              config = {params: params}
+            config = {
+              transformRequest: [function (data) {
+                // Do whatever you want to transform the data
+                let ret = ''
+                for (let it in data) {
+                  ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                }
+                return ret
+              }],
+              headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }
             return axios.post(url, cloneData, config);
         case 'put':
