@@ -15,7 +15,7 @@ export async function query(params) {
   return request({
     url: GET_CRMACCMANAG,
     method: 'post',
-    data: {pageNo: 1, content: ''},
+    data: params,
   })
 }
 

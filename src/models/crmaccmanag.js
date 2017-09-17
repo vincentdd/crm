@@ -50,6 +50,7 @@ export default modelExtend(pageModel, {
 			call,
 			put
 		}) {
+	  payload = {pageNo: 1, content: ''};//临时这么写
 			const data = yield call(query, payload)
 			if (data.success) {
 				yield put({
