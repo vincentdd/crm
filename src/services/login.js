@@ -14,8 +14,7 @@ const {
 export async function login(data) {
 	return request({
 		url: userLogin,
-		//url: USER_LOGIN,
 		method: 'post',
-		data,
+		data: data,
 	})
 }

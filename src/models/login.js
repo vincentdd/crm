@@ -21,18 +21,14 @@ export default {
       const {
         locationQuery
       } = yield select(_ => _.app)
-      if (data.success) {
+      console.log(data);
+      if (data.success && data.rc == 0) {
         const {
           from
         } = locationQuery
         yield put({
           type: 'app/query'
         })
-      const { locationQuery } = yield select(_ => _.app)
-      console.log(data);
-      if (data.success && data.rc == 0) {
-        const { from } = locationQuery
-        yield put({ type: 'app/query' })
         if (from && from !== '/login') {
           yield put(routerRedux.push(from))
         } else {

@@ -50,25 +50,25 @@ export default modelExtend(pageSizeModel, {
 			call,
 			put
 		}) {
-			let temp = {};
-			if (payload.page === undefined) {
-				temp.pageNo = 1;
-			} else {
-				temp = payload.page;
-			}
-
-	  payload = {pageNo: 1, content: ''};//临时这么写
+			// let temp = {};
+			// if (payload.page === undefined) {
+			// 	temp.pageNo = 1;
+			// } else {
+			// 	temp = payload.page;
+			// }
+			payload = {
+				pageNo: 1,
+				content: ''
+			}; //临时这么写
 			const data = yield call(query, payload)
 			console.log(data);
 			if (data.success) {
 				yield put({
 					type: 'querySuccess',
 					payload: {
-						list: data.data,
-						page: {
-							current: Number(payload.page) || 1,
-							pageSize: Number(payload.pageSize) || 10,
-							total: data.total,
+						list: data.crmList,
+						pagination: {
+							...data.page
 						},
 						// pagination: {
 						// 	current: Number(payload.page) || 1,
