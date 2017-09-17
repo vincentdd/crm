@@ -31,6 +31,6 @@ module.exports = {
     UPDATA_CRMACCMANAG: `${APIV1}/crmaccmanag/:customerId`,
     clue: `${APIV1}/clue`,
     //crmaccmanag: `${APIV3}/customer/list/get`,
-    account: `${APIV1}/account`,
+    account: `${APIV3}/account/list`,
   },
 }

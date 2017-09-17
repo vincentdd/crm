@@ -51,22 +51,16 @@ export default modelExtend(pageModel, {
 			call,
 			put
 		}) {
-			const temp = {
-				pageNo: "1",
-				//pageSize: "10"
-			}
-			if (payload.page === undefined)
-				payload = temp;
-			else
-				payload = {
-					pageNo: payload.page
-				}
+			payload = {
+			  pageNo: 1
+      }
 			const data = yield call(query, payload)
+      console.log(data);
 			if (data.success) {
 				yield put({
 					type: 'querySuccess',
 					payload: {
-						list: data.data,
+						list: data.dataList,
 						pagination: {
 							current: Number(payload.page) || 1,
 							pageSize: Number(payload.pageSize) || 10,

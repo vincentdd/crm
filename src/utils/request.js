@@ -18,6 +18,7 @@ const fetch = (options) => {
             data,
             fetchType,
             url,
+            params
     } = options
 
     const cloneData = lodash.cloneDeep(data);
@@ -71,10 +72,12 @@ const fetch = (options) => {
             return axios.delete(url, {
                 data: cloneData,
             })
-        case 'post':
-            return axios.post(url, cloneData, {
-                'Content-Type': 'application/json'
-            })
+      case 'post':
+            let config = {}
+            if(params){
+              config = {params: params}
+            }
+            return axios.post(url, cloneData, config);
         case 'put':
             return axios.put(url, cloneData)
         case 'patch':
@@ -95,15 +98,15 @@ export default function request(options) {
         console.log(options.url.split('//')[1].split('/')[0]);
         const origin = `${options.url.split('//')[0]}//${options.url.split('//')[1].split('/')[0]}`
         console.log(origin);
-        if (window.location.origin !== origin) {
-            if (CORS && CORS.indexOf(origin) > -1) {
-                options.fetchType = 'CORS'
-            } else if (YQL && YQL.indexOf(origin) > -1) {
-                options.fetchType = 'YQL'
-            } else {
-                options.fetchType = 'JSONP'
-            }
-        }
+        // if (window.location.origin !== origin) {
+        //     if (CORS && CORS.indexOf(origin) > -1) {
+        //         options.fetchType = 'CORS'
+        //     } else if (YQL && YQL.indexOf(origin) > -1) {
+        //         options.fetchType = 'YQL'
+        //     } else {
+        //         options.fetchType = 'JSONP'
+        //     }
+        // }
     }
 
     return fetch(options).then((response) => {

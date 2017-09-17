@@ -14,8 +14,9 @@ const {
 export async function query(params) {
     return request({
         url: account,
-        method: 'get',
+        method: 'post',
         data: params,
+        params: params,
     })
 }
 
