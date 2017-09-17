@@ -44,7 +44,7 @@ const Login = ({
             </div>
     <form>
         <FormItem hasFeedback>
-          {getFieldDecorator('username', {
+          {getFieldDecorator('account', {
             rules: [
               {
                 required: true,
@@ -65,10 +65,6 @@ const Login = ({
           <Button type="primary" size="large" onClick={handleOk} loading={loading.effects.login}>
             Sign in
           </Button>
-          <p>
-            <span>Username：guest</span>
-            <span>Password：guest</span>
-          </p>
         </Row>
 
       </form>
