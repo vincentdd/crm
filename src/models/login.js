@@ -28,13 +28,20 @@ export default {
         yield put({
           type: 'app/query'
         })
+      const { locationQuery } = yield select(_ => _.app)
+      console.log(data);
+      if (data.success && data.rc == 0) {
+        const { from } = locationQuery
+        yield put({ type: 'app/query' })
         if (from && from !== '/login') {
           yield put(routerRedux.push(from))
         } else {
-          yield put(routerRedux.push('/dashboard'))
+          yield put(routerRedux.push('/crmaccmanag'))
         }
       } else {
-        throw data
+        throw {
+          message: '登陆失败'
+        }
       }
     },
   },

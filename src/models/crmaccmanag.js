@@ -57,6 +57,7 @@ export default modelExtend(pageSizeModel, {
 				temp = payload.page;
 			}
 
+	  payload = {pageNo: 1, content: ''};//临时这么写
 			const data = yield call(query, payload)
 			console.log(data);
 			if (data.success) {

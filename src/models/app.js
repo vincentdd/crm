@@ -86,14 +86,19 @@ export default {
       put,
       select
     }) {
-      const {
-        success,
-        user
-      } = yield call(query, payload)
+      // const {
+      //   success,
+      //   user
+      // } = yield call(query, payload)
       const {
         locationPathname
       } = yield select(_ => _.app)
-      if (success && user) {
+      const user = {
+        permissions : {role: EnumRoleType.ADMIN},
+        username : '华良',
+        id: 1
+      }
+      if (user) {
         const {
           list
         } = yield call(menusService.query)
@@ -142,14 +147,17 @@ export default {
       call,
       put
     }) {
-      const data = yield call(logout, parse(payload))
-      if (data.success) {
-        yield put({
-          type: 'query'
-        })
-      } else {
-        throw (data)
-      }
+      // const data = yield call(logout, parse(payload))
+      // if (data.success) {
+      //   yield put({
+      //     type: 'query'
+      //   })
+      // } else {
+      //   throw (data)
+      // }
+      yield put(routerRedux.push({
+        pathname: 'login',
+      }))
     },
 
     * changeNavbar(action, {

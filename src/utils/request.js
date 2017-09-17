@@ -127,12 +127,12 @@ export default function request(options) {
                 list: data,
             }
         }
-        return Promise.resolve({
-            success: true,
-            message: statusText,
-            statusCode: status,
-            ...data,
-        })
+      return Promise.resolve({
+        success: true,
+        message: statusText,
+        statusCode: status,
+        ...data,
+      })
     }).catch((error) => {
         const {
             response

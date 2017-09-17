@@ -4,19 +4,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
-import { Row, Col, Card, DatePicker, Select, Input, Button, TreeSelect } from 'antd'
+import { Row, Col, Card, DatePicker, Select, Input, Button } from 'antd'
+import TreeSelector from './TreeSelector';
 import styles from './index.less'
 
 const { RangePicker } = DatePicker;
 const { Option } = Select;
-const { TreeNode } = TreeSelect;
 
-const Clue = ({dispatch, clue, loading}) =>{
-  const { list, page, treeSelectValue } = clue
+const Clue = ({clue, loading}) =>{
+  const { list, page } = clue
   console.log(clue)
   console.log(list);
   console.log(page);
-  console.log(treeSelectValue);
+
 
 
   const onChange = (date, dateString) =>{
@@ -25,15 +25,10 @@ const Clue = ({dispatch, clue, loading}) =>{
   const handleChange = (value) => {
     console.log(`selected ${value}`);
   }
-  const onTreeChange = (value) => {
-    console.log(arguments);
-    console.log(value)
-    dispatch({
-      type: 'clue/treeUpdate',
-      payload: {
-        treeSelectValue: value,
-      },
-    })
+  const treeSelectPrpps = {
+    onChangeItem(value){
+      console.log(value);
+    }
   }
 
 
@@ -61,26 +56,7 @@ const Clue = ({dispatch, clue, loading}) =>{
       </Row>
       <Row className={styles.filter}>
         <Col span={6}>
-          <TreeSelect
-            showSearch
-            style={{ width: 250 }}
-            value={treeSelectValue}
-            dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-            placeholder="产品关键字"
-            allowClear
-            treeDefaultExpandAll
-            onChange={onTreeChange}
-          >
-            <TreeNode value="parent 1" title="服装销售" key="0-1">
-              <TreeNode value="parent 1-0" title="服装进出口" key="0-1-1">
-                <TreeNode value="leaf1" title="服装进出口贸易" key="random" />
-                <TreeNode value="leaf2" title="服装成品定制" key="random1" />
-              </TreeNode>
-              <TreeNode value="parent 1-1" title="面料加工" key="random2">
-                <TreeNode value="sss" title={<b style={{ color: '#08c' }}>绍兴面料加工厂</b>} key="random3" />
-              </TreeNode>
-            </TreeNode>
-          </TreeSelect>
+          <TreeSelector  {...treeSelectPrpps}/>
         </Col>
         <Col span={6}>
           <Button type="primary">确认</Button>
@@ -96,7 +72,6 @@ const Clue = ({dispatch, clue, loading}) =>{
 
 Clue.propTypes = {
   clue: PropTypes.object,
-  dispatch: PropTypes.func,
   loading: PropTypes.object,
 }
 
