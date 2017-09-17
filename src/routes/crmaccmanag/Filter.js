@@ -9,16 +9,16 @@ import {
     Button,
     Row,
     Col,
-    DatePicker,
+    // DatePicker,
     Input,
     Cascader,
     Switch
 } from 'antd'
 
 const Search = Input.Search
-const {
-    RangePicker
-} = DatePicker
+    // const {
+    //     RangePicker
+    // } = DatePicker
 
 const ColProps = {
     xs: 24,
@@ -45,60 +45,60 @@ const Filter = ({
         setFieldsValue,
     },
 }) => {
-    const handleFields = (fields) => {
-        const {
-            createTime
-        } = fields
-        if (createTime.length) {
-            fields.createTime = [createTime[0].format('YYYY-MM-DD'), createTime[1].format('YYYY-MM-DD')]
-        }
-        return fields
-    }
+    // const handleFields = (fields) => {
+    //     const {
+    //         createTime
+    //     } = fields
+    //     if (createTime.length) {
+    //         fields.createTime = [createTime[0].format('YYYY-MM-DD'), createTime[1].format('YYYY-MM-DD')]
+    //     }
+    //     return fields
+    // }
 
     const handleSubmit = () => {
-        let fields = getFieldsValue()
-        fields = handleFields(fields)
-        onFilterChange(fields)
+        let fields = getFieldsValue();
+        //fields = handleFields(fields)
+        onFilterChange(fields);
     }
 
-    const handleReset = () => {
-        const fields = getFieldsValue()
-        for (let item in fields) {
-            if ({}.hasOwnProperty.call(fields, item)) {
-                if (fields[item] instanceof Array) {
-                    fields[item] = []
-                } else {
-                    fields[item] = undefined
-                }
-            }
-        }
-        setFieldsValue(fields)
-        handleSubmit()
-    }
+    // const handleReset = () => {
+    //     const fields = getFieldsValue()
+    //     for (let item in fields) {
+    //         if ({}.hasOwnProperty.call(fields, item)) {
+    //             if (fields[item] instanceof Array) {
+    //                 fields[item] = []
+    //             } else {
+    //                 fields[item] = undefined
+    //             }
+    //         }
+    //     }
+    //     setFieldsValue(fields)
+    //     handleSubmit()
+    // }
 
-    const handleChange = (key, values) => {
-        let fields = getFieldsValue()
-        fields[key] = values
-        fields = handleFields(fields)
-        onFilterChange(fields)
-    }
-    const {
-        name,
-        address
-    } = filter
+    // const handleChange = (key, values) => {
+    //     let fields = getFieldsValue()
+    //     fields[key] = values
+    //     fields = handleFields(fields)
+    //     onFilterChange(fields)
+    // }
+    // const {
+    //     name,
+    //     address
+    // } = filter
 
-    let initialCreateTime = []
-    if (filter.createTime && filter.createTime[0]) {
-        initialCreateTime[0] = moment(filter.createTime[0])
-    }
-    if (filter.createTime && filter.createTime[1]) {
-        initialCreateTime[1] = moment(filter.createTime[1])
-    }
+    // let initialCreateTime = []
+    // if (filter.createTime && filter.createTime[0]) {
+    //     initialCreateTime[0] = moment(filter.createTime[0])
+    // }
+    // if (filter.createTime && filter.createTime[1]) {
+    //     initialCreateTime[1] = moment(filter.createTime[1])
+    // }
 
     return (
-    <Row gutter={24} type="flex" justify="space-between">
+        <Row gutter={24} type="flex" justify="space-between">
             <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }}>
-                {getFieldDecorator('name', { initialValue: name })(<Search placeholder="Search Name" size="large" onSearch={handleSubmit} />)}
+                {getFieldDecorator('content', )(<Search placeholder="请输入公司名称/联系人/邮箱/电话" size="large" onSearch={handleSubmit} />)}
             </Col>
             <Col {...TwoColProps} xl={{ span: 3 }} md={{ span: 3 }}>
                 {<Button size="large" type="ghost" onClick={onAdd}>Create</Button>}

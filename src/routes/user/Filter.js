@@ -57,6 +57,7 @@ const Filter = ({
   }
 
   const handleSubmit = () => {
+    debugger;
     let fields = getFieldsValue()
     fields = handleFields(fields)
     onFilterChange(fields)

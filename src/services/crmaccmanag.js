@@ -14,7 +14,7 @@ const {
 export async function query(params) {
   return request({
     url: GET_CRMACCMANAG,
-    method: 'get',
+    method: 'post',
     data: params,
   })
 }

@@ -1,15 +1,39 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { routerRedux } from 'dva/router'
-import { connect } from 'dva'
-import { Row, Col, Button, Popconfirm } from 'antd'
+import {
+  routerRedux
+} from 'dva/router'
+import {
+  connect
+} from 'dva'
+import {
+  Row,
+  Col,
+  Button,
+  Popconfirm
+} from 'antd'
 import List from './List'
 import Filter from './Filter'
 import Modal from './Modal'
 
-const User = ({ location, dispatch, user, loading }) => {
-  const { list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys } = user
-  const { pageSize } = pagination
+const User = ({
+  location,
+  dispatch,
+  user,
+  loading
+}) => {
+  const {
+    list,
+    pagination,
+    currentItem,
+    modalVisible,
+    modalType,
+    isMotion,
+    selectedRowKeys
+  } = user
+  const {
+    pageSize
+  } = pagination
   console.log(user);
 
   const modalProps = {
@@ -19,13 +43,13 @@ const User = ({ location, dispatch, user, loading }) => {
     confirmLoading: loading.effects['user/update'],
     title: `${modalType === 'create' ? 'Create User' : 'Update User'}`,
     wrapClassName: 'vertical-center-modal',
-    onOk (data) {
+    onOk(data) {
       dispatch({
         type: `user/${modalType}`,
         payload: data,
       })
     },
-    onCancel () {
+    onCancel() {
       dispatch({
         type: 'user/hideModal',
       })
@@ -38,24 +62,27 @@ const User = ({ location, dispatch, user, loading }) => {
     pagination,
     location,
     isMotion,
-    onChange (page) {
-      const { query, pathname } = location
+    onChange(page) {
+      const {
+        query,
+        pathname
+      } = location
       dispatch(routerRedux.push({
         pathname,
         query: {
           ...query,
           page: page.current,
-          pageSize: page.pageSize,
+          //pageSize: page.pageSize,
         },
       }))
     },
-    onDeleteItem (id) {
+    onDeleteItem(id) {
       dispatch({
         type: 'user/delete',
         payload: id,
       })
     },
-    onEditItem (item) {
+    onEditItem(item) {
       dispatch({
         type: 'user/showModal',
         payload: {
@@ -82,7 +109,7 @@ const User = ({ location, dispatch, user, loading }) => {
     filter: {
       ...location.query,
     },
-    onFilterChange (value) {
+    onFilterChange(value) {
       dispatch(routerRedux.push({
         pathname: location.pathname,
         query: {
@@ -92,18 +119,18 @@ const User = ({ location, dispatch, user, loading }) => {
         },
       }))
     },
-    onSearch (fieldsValue) {
+    onSearch(fieldsValue) {
       fieldsValue.keyword.length ? dispatch(routerRedux.push({
-          pathname: '/user',
-          query: {
-            field: fieldsValue.field,
-            keyword: fieldsValue.keyword,
-          },
-        })) : dispatch(routerRedux.push({
-          pathname: '/user',
-        }))
+        pathname: '/user',
+        query: {
+          field: fieldsValue.field,
+          keyword: fieldsValue.keyword,
+        },
+      })) : dispatch(routerRedux.push({
+        pathname: '/user',
+      }))
     },
-    onAdd () {
+    onAdd() {
       dispatch({
         type: 'user/showModal',
         payload: {
@@ -111,8 +138,10 @@ const User = ({ location, dispatch, user, loading }) => {
         },
       })
     },
-    switchIsMotion () {
-      dispatch({ type: 'user/switchIsMotion' })
+    switchIsMotion() {
+      dispatch({
+        type: 'user/switchIsMotion'
+      })
     },
   }
 
@@ -152,4 +181,10 @@ User.propTypes = {
   loading: PropTypes.object,
 }
 
-export default connect(({ user, loading }) => ({ user, loading }))(User)
+export default connect(({
+  user,
+  loading
+}) => ({
+  user,
+  loading
+}))(User)
