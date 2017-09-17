@@ -31,7 +31,7 @@ module.exports = {
     v2test: `${APIV2}/test`,
     GET_CRMACCMANAG: `${APIV3}/customer/list/get`,
     //GET_CRMACCMANAG: `${APIV1}/crmaccmanag`,
-    UPDATA_CRMACCMANAG: `${APIV1}/crmaccmanag/:customerId`,
+    UPDATA_CRMACCMANAG: `${APIV1}/customer/save`,
     clue: `${APIV1}/clue`,
     //crmaccmanag: `${APIV3}/customer/list/get`,
     account: `${APIV3}/account/list`,

@@ -1,59 +1,59 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
-    Form,
-    Input,
-    InputNumber,
-    Radio,
-    Modal,
-    Cascader,
-    DatePicker
+  Form,
+  Input,
+  InputNumber,
+  Radio,
+  Modal,
+  Cascader,
+  DatePicker
 } from 'antd';
 const {
-    RangePicker
+  RangePicker
 } = DatePicker;
 
 const FormItem = Form.Item
 
 const formItemLayout = {
-    labelCol: {
-        span: 6,
-    },
-    wrapperCol: {
-        span: 14,
-    },
+  labelCol: {
+    span: 6,
+  },
+  wrapperCol: {
+    span: 14,
+  },
 }
 
 const modal = ({
-    item = {},
-    onOk,
-    form: {
-        getFieldDecorator,
-        validateFields,
-        getFieldsValue,
-    },
-    ...modalProps
+  item = {},
+  onOk,
+  form: {
+    getFieldDecorator,
+    validateFields,
+    getFieldsValue,
+  },
+  ...modalProps
 }) => {
-    const handleOk = () => {
-        validateFields((errors) => {
-            if (errors) {
-                return
-            }
-            const data = {
-                ...getFieldsValue(),
-                key: item.customerId,
-            }
-            onOk(data);
-        })
-    }
+  const handleOk = () => {
+    validateFields((errors) => {
+      if (errors) {
+        return
+      }
+      const data = {
+        ...getFieldsValue(),
+        key: item.customerId,
+      }
+      onOk(data);
+    })
+  }
 
-    const modalOpts = {
-        ...modalProps,
-        onOk: handleOk,
-    }
+  const modalOpts = {
+    ...modalProps,
+    onOk: handleOk,
+  }
 
-    return (
-        <Modal {...modalOpts}>
+  return (
+    <Modal {...modalOpts}>
       <Form layout="horizontal">
         <FormItem label="公司信息" hasFeedback {...formItemLayout}>
           {getFieldDecorator('companyName', {
@@ -158,14 +158,14 @@ const modal = ({
         </FormItem>
       </Form>
     </Modal>
-    )
+  )
 }
 
 modal.propTypes = {
-    form: PropTypes.object.isRequired,
-    type: PropTypes.string,
-    item: PropTypes.object,
-    onOk: PropTypes.func,
+  form: PropTypes.object.isRequired,
+  type: PropTypes.string,
+  item: PropTypes.object,
+  onOk: PropTypes.func,
 }
 
 export default Form.create()(modal)

@@ -61,7 +61,8 @@ export default modelExtend(pageSizeModel, {
 				content: ''
 			}; //临时这么写
 			const data = yield call(query, payload)
-			console.log(data);
+				//console.log(new Date(data.crmList[0].createTime.time));
+				//debugger;
 			if (data.success) {
 				yield put({
 					type: 'querySuccess',
