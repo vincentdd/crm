@@ -52,10 +52,10 @@ export default modelExtend(pageModel, {
 			put
 		}) {
 			payload = {
-			  pageNo: 1
-      }
+				pageNo: 1
+			}
 			const data = yield call(query, payload)
-      console.log(data);
+			console.log(data);
 			if (data.success) {
 				yield put({
 					type: 'querySuccess',

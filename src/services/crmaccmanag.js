@@ -21,7 +21,7 @@ export async function query(params) {
 
 export async function create(params) {
   return request({
-    url: GET_CRMACCMANAG.replace('/:customerId', ''),
+    url: UPDATA_CRMACCMANAG,
     method: 'post',
     data: params,
   })

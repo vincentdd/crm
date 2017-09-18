@@ -11,13 +11,13 @@ import {
 	update
 } from 'services/crmaccmanag'
 import {
-	pageModel
+	pageSizeModel
 } from './common'
 const {
 	prefix
 } = config
 
-export default modelExtend(pageModel, {
+export default modelExtend(pageSizeModel, {
 	namespace: 'crmaccmanag',
 
 	state: {
@@ -50,16 +50,32 @@ export default modelExtend(pageModel, {
 			call,
 			put
 		}) {
-	  payload = {pageNo: 1, content: ''};//临时这么写
+			// let temp = {};
+			// if (payload.page === undefined) {
+			// 	temp.pageNo = 1;
+			// } else {
+			// 	temp = payload.page;
+			// }
+			payload = {
+				pageNo: 1,
+				content: ''
+			}; //临时这么写
 			const data = yield call(query, payload)
+				//console.log(new Date(data.crmList[0].createTime.time));
+				//debugger;
 			if (data.success) {
 				yield put({
 					type: 'querySuccess',
 					payload: {
 						list: data.crmList,
 						pagination: {
-              ...data.page
+							...data.page
 						},
+						// pagination: {
+						// 	current: Number(payload.page) || 1,
+						// 	pageSize: Number(payload.pageSize) || 10,
+						// 	total: data.total,
+						// },
 					},
 				})
 			} else {

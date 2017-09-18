@@ -48,7 +48,7 @@ const List = ({
 	}, {
 		title: '操作',
 		render: (record) => {
-			return <span style={{display:"flex",justifyContent:"space-between"}} >
+			return <span style={{display:"flex",justifyContent:"space-around"}} >
       			<a href="#">{record.status === true?<Icon type="down" style={{ fontSize: 16, color: 'green' }} />:<Icon type="close-circle-o" style={{ fontSize: 16, color: 'green' }} />}</a>
       			<a href="#" >查看</a>
 				<a href="#" onClick={(e) => {handleClick(record, e,'3')}}>编辑</a>

@@ -87,9 +87,17 @@ const Crmaccmanag = ({
 	}
 
 	const filterProps = {
-		isMotion,
 		filter: {
 			...location.query,
+		},
+		onFilterChange(value) {
+			dispatch(routerRedux.push({
+				pathname: location.pathname,
+				query: {
+					...value,
+					page: 1,
+				},
+			}))
 		},
 		onSearch(fieldsValue) {
 			fieldsValue.keyword.length ? dispatch(routerRedux.push({

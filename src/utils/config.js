@@ -16,6 +16,8 @@ module.exports = {
   APIV2,
   APIV3,
   api: {
+    userLogin: `${APIV1}/user/login`,
+    USER_LOGIN: `${APIV3}/auth/logon/byPwd`,
     userLogin: `${APIV3}/auth/logon/byPwd`,
     userLogout: `${APIV1}/user/logout`,
     userInfo: `${APIV1}/userInfo`,
@@ -28,9 +30,11 @@ module.exports = {
     v1test: `${APIV1}/test`,
     v2test: `${APIV2}/test`,
     GET_CRMACCMANAG: `${APIV3}/customer/list/get`,
-    UPDATA_CRMACCMANAG: `${APIV1}/crmaccmanag/:customerId`,
+    //GET_CRMACCMANAG: `${APIV1}/crmaccmanag`,
+    UPDATA_CRMACCMANAG: `${APIV1}/customer/save`,
     clue: `${APIV1}/clue`,
     //crmaccmanag: `${APIV3}/customer/list/get`,
     account: `${APIV3}/account/list`,
+    //account: `${APIV1}/account`,
   },
 }
