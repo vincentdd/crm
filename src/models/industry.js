@@ -1,16 +1,15 @@
-import {
-	parse
-} from 'qs'
+// import {
+// 	parse
+// } from 'qs'
 import modelExtend from 'dva-model-extend'
 import {
 	config
 } from 'utils'
-// import {
-// 	create,
-// 	query,
-// } from 'services/industry'
 import {
-	pageModel
+	query
+} from 'services/industry'
+import {
+	pageSizeModel
 } from './common'
 const {
 	prefix
@@ -279,8 +278,8 @@ const data = [{
 }];
 
 
-export default modelExtend(pageModel, {
-	namespace: 'account',
+export default modelExtend(pageSizeModel, {
+	namespace: 'industry',
 
 	state: {
 		list: data,

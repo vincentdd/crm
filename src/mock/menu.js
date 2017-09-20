@@ -48,7 +48,7 @@ let database = [{
   bpid: '1',
   name: '行业管理',
   icon: 'shopping-cart',
-  route: '/post',
+  route: '/industry',
 }, {
   id: '8',
   bpid: '1',

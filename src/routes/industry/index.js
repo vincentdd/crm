@@ -9,18 +9,9 @@ import {
 import {
     routerRedux
 } from 'dva/router'
-import List from './List'
 
-const TabPane = Tabs.TabPane
-
-const EnumPostStatus = {
-    UNPUBLISH: 1,
-    PUBLISHED: 2,
-    tree: 3,
-}
-
-const Index = ({
-    post,
+const Industry = ({
+    industry,
     dispatch,
     loading,
     location
@@ -28,7 +19,7 @@ const Index = ({
     const {
         list,
         pagination
-    } = post
+    } = industry
     const {
         query = {}, pathname
     } = location
@@ -36,7 +27,7 @@ const Index = ({
     const listProps = {
         pagination,
         dataSource: list,
-        loading: loading.effects['post/query'],
+        loading: loading.effects['industry/query'],
         onChange(page) {
             dispatch(routerRedux.push({
                 pathname,
@@ -59,31 +50,22 @@ const Index = ({
 
 
     return (<div className="content-inner">
-    <Tabs activeKey={query.status === String(EnumPostStatus.UNPUBLISH) ? String(EnumPostStatus.UNPUBLISH) : String(EnumPostStatus.PUBLISHED)} onTabClick={handleTabClick}>
-      <TabPane tab="Publised" key={String(EnumPostStatus.PUBLISHED)}>
-        <List {...listProps} />
-      </TabPane>
-      <TabPane tab="Unpublish" key={String(EnumPostStatus.UNPUBLISH)}>
-        <List {...listProps} />
-      </TabPane>
-      <TabPane tab="tree" key={String(EnumPostStatus.tree)}>
-      
-      </TabPane>
-    </Tabs>
+        {console.log(list)}
+        hello world
   </div>)
 }
 
-Index.propTypes = {
-    post: PropTypes.object,
+Industry.propTypes = {
+    industry: PropTypes.object,
     loading: PropTypes.object,
     location: PropTypes.object,
     dispatch: PropTypes.func,
 }
 
 export default connect(({
-    post,
+    industry,
     loading
 }) => ({
-    post,
+    industry,
     loading
-}))(Index)
+}))(Industry)

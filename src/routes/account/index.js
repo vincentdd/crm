@@ -67,6 +67,15 @@ const Account = ({
 				},
 			}))
 		},
+		onShowDetail(item) {
+			dispatch({
+				type: 'account/showModal',
+				payload: {
+					modalType: 'update',
+					currentItem: item,
+				},
+			})
+		},
 		onEditItem(item) {
 			dispatch({
 				type: 'account/showModal',

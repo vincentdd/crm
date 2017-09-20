@@ -53,7 +53,7 @@ const modal = ({
   }
 
   return (
-    <Modal {...modalOpts}>
+  <Modal {...modalOpts}>
       <Form layout="horizontal">
         <FormItem label="公司信息" hasFeedback {...formItemLayout}>
           {getFieldDecorator('companyName', {
