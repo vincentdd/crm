@@ -1,76 +1,71 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import moment from 'moment'
 import {
-  Form,
-  Input,
-  InputNumber,
-  Radio,
-  Modal,
-  Cascader,
-  DatePicker
+    Form,
+    Input,
+    InputNumber,
+    Radio,
+    Modal,
+    Cascader,
+    DatePicker
 } from 'antd';
 const {
-  RangePicker
+    RangePicker
 } = DatePicker;
 
 const FormItem = Form.Item
 
 const formItemLayout = {
-  labelCol: {
-    span: 6,
-  },
-  wrapperCol: {
-    span: 14,
-  },
+    labelCol: {
+        span: 6,
+    },
+    wrapperCol: {
+        span: 14,
+    },
 }
 
 const modal = ({
-  item = {},
-  onOk,
-  form: {
-    getFieldDecorator,
-    validateFields,
-    getFieldsValue,
-  },
-  ...modalProps
+    item = {},
+    onOk,
+    form: {
+        getFieldDecorator,
+        validateFields,
+        getFieldsValue,
+        getFieldValue,
+    },
+    ...modalProps
 }) => {
-  const handleOk = () => {
-    validateFields((errors) => {
-      if (errors) {
-        return
-      }
-      const data = {
-          ...getFieldsValue(),
-          key: item.key,
-        }
-        // console.log(data.indate);
-        // data.indate.map((currentValue) => {
-        //     debugger;
-        //     return currentValue.toLocaleString().substr(0, 10);
-        // });
-        // data.date = 0;
-      onOk(data);
-    })
-  }
+    const handleOk = () => {
+        validateFields((errors) => {
+            if (errors) {
+                return
+            }
+            const data = {
+                    ...getFieldsValue(),
+                    //key: item.key,
+                    birth: moment(getFieldValue('birth')).format('YYYY-MM-DD'),
+                    status: item.status,
+                    id: item.id,
+                }
+                // console.log(data.indate);
+                // data.indate.map((currentValue) => {
+                //     debugger;
+                //     return currentValue.toLocaleString().substr(0, 10);
+                // });
+                // data.date = 0;
+            console.log(data);
+            onOk(data);
+        })
+    }
+    const modalOpts = {
+        ...modalProps,
+        onOk: handleOk,
+    }
 
-  const modalOpts = {
-    ...modalProps,
-    onOk: handleOk,
-  }
-
-  return (
-    <Modal {...modalOpts}>
-      <Form layout="horizontal">
-        <FormItem label="员工编号" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('accountNo', {
-            initialValue: item.accountNo,
-            rules: [
-              {
-                required: true,
-              },
-            ],
-          })(<Input />)}
-        </FormItem>
+    return (
+        <Modal {...modalOpts}>
+        <Form layout="horizontal">
         <FormItem label="姓名" hasFeedback {...formItemLayout}>
           {getFieldDecorator('name', {
             initialValue: item.name,
@@ -93,13 +88,25 @@ const modal = ({
             ],
           })(<Input />)}
         </FormItem>
-        <FormItem label="电话" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('contactPhone', {
-            initialValue: item.contactPhone,
+        <FormItem label="邮箱" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('email', {
+            initialValue: item.email,
             rules: [
               {
                 required: true,
-                type: 'number',
+                pattern: /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/,
+                message: '请输入正确的邮箱',
+              },
+            ],
+          })(<Input />)}
+        </FormItem>
+        <FormItem label="传真" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('fax', {
+            initialValue: item.fax,
+            rules: [
+              {
+                pattern: /^(\d{3,4}-)?\d{7,8}$/,
+                message: '请输入正确的传真',
               },
             ],
           })(<Input />)}
@@ -109,7 +116,6 @@ const modal = ({
             initialValue: item.department,
             rules: [
               {
-                required: true,
               },
             ],
           })(<Input />)}
@@ -119,23 +125,21 @@ const modal = ({
             initialValue: item.job,
             rules: [
               {
-                required: true,
               },
             ],
           })(<Input />)}
         </FormItem>
-        <FormItem label="创建时间" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('createTime', {
-            initialValue: item.createTime,
+        <FormItem label="生日" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('birth', {
+            initialValue: item.birth === undefined?moment(item.birth):moment(),
             rules: [
-              {
-                required: true,
+              { type: 'object',
               },
             ],
-          })(<Input />)}
+          })(<DatePicker />)}
         </FormItem>
-        <FormItem label="分配行业" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('industryNames', {
+        <FormItem label="身份证号" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('idNo', {
             rules: [
               {              },
             ],
@@ -147,26 +151,32 @@ const modal = ({
             rules: [
               {
                 required: true,
-                type: 'boolean',
               },
             ],
           })(
             <Radio.Group>
-              <Radio value>可用</Radio>
-              <Radio value={false}>不可用</Radio>
+              <Radio value={1}>可用</Radio>
+              <Radio value={2}>不可用</Radio>
             </Radio.Group>
           )}
         </FormItem>
+        <FormItem label="分配行业" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('industryNames', {
+            rules: [
+              {              },
+            ],
+          })(<Input />)}
+        </FormItem>
       </Form>
     </Modal>
-  )
+    )
 }
 
 modal.propTypes = {
-  form: PropTypes.object.isRequired,
-  type: PropTypes.string,
-  item: PropTypes.object,
-  onOk: PropTypes.func,
+    form: PropTypes.object.isRequired,
+    type: PropTypes.string,
+    item: PropTypes.object,
+    onOk: PropTypes.func,
 }
 
 export default Form.create()(modal)

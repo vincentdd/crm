@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 import {
 	Table,
 	Icon
@@ -26,9 +27,6 @@ const List = ({
 		title: '手机',
 		dataIndex: 'account',
 	}, {
-		title: '电话',
-		dataIndex: 'contactPhone',
-	}, {
 		title: '部门',
 		dataIndex: 'department',
 	}, {
@@ -40,8 +38,10 @@ const List = ({
 			return <span>{record.status === true ? '启用' : '禁用'}</span>
 		}
 	}, {
-		title: '创建时间',
-		dataIndex: 'createTime',
+		title: '生日',
+		render: (record) => {
+			return <span>{moment(record.birth).format("YYYY-MM-DD")}</span>
+		}
 	}, {
 		title: '负责行业',
 		dataIndex: 'industryNames',

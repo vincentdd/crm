@@ -11,8 +11,9 @@ import {
 } from 'dva/router'
 import 'antd/dist/antd.css';
 import List from './List';
-import Modal from './Modal'
-import Filter from './Filter'
+import Modal from './Modal';
+import Filter from './Filter';
+import Info from './DetailModal';
 
 const Account = ({
 	account,
@@ -23,6 +24,7 @@ const Account = ({
 	const {
 		list,
 		pagination,
+		detailVisible,
 		modalVisible,
 		modalType,
 		currentItem,
@@ -32,6 +34,20 @@ const Account = ({
 	const {
 		query = {}, pathname
 	} = location
+
+	const detailProps = {
+		visible: detailVisible,
+		wrapClassName: 'vertical-center-modal',
+		title: `详细信息`,
+		onOk() {
+			dispatch({
+				type: `account/hideModal`
+			})
+			dispatch({
+				type: `account/hideModal`
+			})
+		},
+	}
 
 	const modalProps = {
 		item: modalType === 'create' ? {} : currentItem,
@@ -126,6 +142,7 @@ const Account = ({
       		<Filter {...filterProps} />
 			<List {...listProps} />
 			{modalVisible && <Modal {...modalProps} />}
+			{detailVisible && <Info {...detailProps} />}
 		</div>
 	);
 }

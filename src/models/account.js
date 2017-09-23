@@ -8,6 +8,7 @@ import {
 import {
 	create,
 	query,
+	update,
 } from 'services/account'
 import {
 	pageModel
@@ -25,6 +26,7 @@ export default modelExtend(pageModel, {
 		loading: false, // 控制加载状态
 		current: null, // 当前分页信息
 		currentItem: {}, // 当前操作的用户对象
+		detilVisible: false, //详情弹窗显示状态
 		modalVisible: false, // 弹出窗的显示状态
 		modalType: 'create', // 弹出窗的类型（添加用户，编辑用户）
 		isMotion: window.localStorage.getItem(`${prefix}userIsMotion`) === 'true',
@@ -39,7 +41,6 @@ export default modelExtend(pageModel, {
 					dispatch({
 						type: 'query',
 						payload: location.query,
-
 					})
 				}
 			})
@@ -51,10 +52,18 @@ export default modelExtend(pageModel, {
 			call,
 			put
 		}) {
-			payload = {
-				pageNo: 1
+			let temp;
+			if (payload.page === undefined) {
+				temp = {
+					pageNo: 1
+				}
+			} else {
+				temp = {
+					pageNo: payload.page
+				}
 			}
-			const data = yield call(query, payload)
+			console.log(payload);
+			const data = yield call(query, temp)
 			console.log(data);
 			if (data.success) {
 				yield put({
@@ -92,7 +101,32 @@ export default modelExtend(pageModel, {
 			}
 		},
 		// 	* 'delete' () {},
-		//	* update() {}
+		* update({
+			payload
+		}, {
+			select,
+			call,
+			put
+		}) {
+			const id = yield select(({
+				account
+			}) => account.currentItem.id)
+			const newUser = {...payload,
+				id
+			}
+			const data = yield call(update, newUser)
+			console.log(data);
+			if (data.success) {
+				yield put({
+					type: 'hideModal'
+				})
+				yield put({
+					type: 'query'
+				})
+			} else {
+				throw data
+			}
+		},
 	},
 	reducers: {
 		// showLoading() {}, // 控制加载状态的 reducer
@@ -103,7 +137,6 @@ export default modelExtend(pageModel, {
 				...payload,
 				modalVisible: true
 			}
-			console.log(state.modalVisible);
 		},
 		hideModal(state) {
 			return {...state,

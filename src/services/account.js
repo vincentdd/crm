@@ -8,12 +8,13 @@ const {
     api
 } = config
 const {
-    account
+    GET_ACCOUNT,
+    UPDATA_ACCOUNT
 } = api
 
 export async function query(params) {
     return request({
-        url: account,
+        url: GET_ACCOUNT,
         method: 'post',
         data: params,
     })
@@ -21,7 +22,7 @@ export async function query(params) {
 
 export async function create(params) {
     return request({
-        url: account.replace('/:id', ''),
+        url: GET_ACCOUNT.replace('/:id', ''),
         method: 'post',
         data: params,
     })
@@ -29,8 +30,8 @@ export async function create(params) {
 
 export async function update(params) {
     return request({
-        url: account,
-        method: 'patch',
+        url: UPDATA_ACCOUNT,
+        method: 'post',
         data: params,
     })
 }

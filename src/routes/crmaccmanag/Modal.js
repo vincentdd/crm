@@ -53,7 +53,7 @@ const modal = ({
   }
 
   return (
-  <Modal {...modalOpts}>
+    <Modal {...modalOpts}>
       <Form layout="horizontal">
         <FormItem label="公司信息" hasFeedback {...formItemLayout}>
           {getFieldDecorator('companyName', {
@@ -127,7 +127,7 @@ const modal = ({
                 required: true,
               },
             ],
-          })(<Input />)}
+          })(<RangePicker />)}
         </FormItem>
         <FormItem label="员工限制" hasFeedback {...formItemLayout}>
           {getFieldDecorator('limitAcctNum', {
