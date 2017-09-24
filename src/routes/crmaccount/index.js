@@ -10,6 +10,7 @@ import {
   connect
 } from 'dva'
 import {
+  Input,
   Row,
   Col,
   Button,
@@ -18,6 +19,8 @@ import {
 import List from './List'
 // import Filter from './Filter'
 import Modal from './Modal'
+
+const Search = Input.Search;
 
 const Crmaccount = ({
   location,
@@ -40,6 +43,7 @@ const Crmaccount = ({
 
   const modalProps = {
     item: modalType === 'create' ? {} : currentItem,
+    modalType: modalType,
     visible: modalVisible,
     maskClosable: false,
     confirmLoading: loading.effects['crmaccount/update'],
@@ -104,8 +108,36 @@ const Crmaccount = ({
     }
   }
 
+  const onAdd = ()=>{
+    dispatch({
+      type: 'crmaccount/showModal',
+      payload: {
+        modalType: 'create',
+      },
+    })
+  }
+
   return (
     <div className="content-inner">
+      <Row gutter={24} type="flex" justify="start" style={{marginBottom: '12px'}}>
+        <Col xl={{ span: 4 }} md={{ span: 6 }}>
+          <Search
+            placeholder="根据手机号码搜索"
+            style={{ width: 200 }}
+            onSearch={value => console.log(value)}
+          />
+        </Col>
+        <Col xl={{ span: 4 }} md={{ span: 6 }}>
+          <Search
+            placeholder="根据账号搜索"
+            style={{ width: 200 }}
+            onSearch={value => console.log(value)}
+          />
+        </Col>
+        <Col xl={{ span: 3 }} md={{ span: 12 }} style={{textAlign: 'right'}}>
+          {<Button size="large" type="ghost" onClick={onAdd}>新增员工账号</Button>}
+        </Col>
+      </Row>
       {/*<Filter {...filterProps} />*/}
       <List {...listProps} />
       {modalVisible && <Modal {...modalProps} />}
