@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import moment from 'moment';
 import {
   Form,
   Input,
@@ -136,13 +137,13 @@ const modal = ({
         </FormItem>
         <FormItem label="创建时间" hasFeedback {...formItemLayout}>
           {getFieldDecorator('createTime', {
-            initialValue: item.createTime,
+            initialValue: moment(item.createTime, 'YYYY/MM/DD'),
             rules: [
-              {
+              { type: 'object',
                 required: true,
-              },
+                message: '请选择创建时间' }
             ],
-          })(<Input />)}
+          })(<DatePicker />)}
         </FormItem>
       </Form>
     </Modal>
