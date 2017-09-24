@@ -9,6 +9,8 @@ import {
   query,
   update,
   update_status,
+  detail,
+  create,
 } from 'services/crmaccount'
 import {
   pageSizeModel
@@ -30,12 +32,11 @@ export default modelExtend(pageSizeModel, {
       dispatch,
       history
     }) {
-      history.listen(({
-        pathname
-      }) => {
-        if (pathname === '/crmaccount') {
+      history.listen((location) => {
+        if (location.pathname === '/crmaccount') {
           dispatch({
-            type: 'query'
+            type: 'query',
+            payload: location.query,
           })
         }
       })
@@ -48,7 +49,8 @@ export default modelExtend(pageSizeModel, {
       call,
       put
     }) {
-      const param = {pageNo: 1}
+      console.log(payload);
+      const param = {pageNo: payload.page || 1}
       const data = yield call(query, param)
       console.log(data);
       yield put({
@@ -73,6 +75,18 @@ export default modelExtend(pageSizeModel, {
       const data = yield call(update_status, payload);
       console.log('updateSuccess-------------------------');
       console.log(data);
+      yield put({
+        type: 'query',
+      })
+    },
+    * create({
+      payload,
+    }, {
+      call,
+      put
+    }) {
+      payload.accountId = 0;
+      const data = yield call(create, payload);
       yield put({
         type: 'query',
       })

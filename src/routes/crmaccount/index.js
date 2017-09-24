@@ -30,7 +30,7 @@ const Crmaccount = ({
 }) => {
   const {
     list,
-    page,
+    pagination,
     isMotion,
     modalVisible,
     currentItem,
@@ -38,7 +38,7 @@ const Crmaccount = ({
   } = crmaccount
   const {
     pageSize
-  } = page
+  } = pagination
   console.log(crmaccount);
 
   const modalProps = {
@@ -65,7 +65,7 @@ const Crmaccount = ({
   const listProps = {
     dataSource: list,
     loading: loading.effects['crmaccount/query'],
-    page,
+    pagination,
     location,
     isMotion,
     onChange(page) {
