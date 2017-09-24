@@ -9,20 +9,19 @@ import {
 	query
 } from 'services/industry'
 import {
-	pageSizeModel
+	pageModel
 } from './common'
 const {
 	prefix
 } = config
 
-export default modelExtend(pageSizeModel, {
+export default modelExtend(pageModel, {
 	namespace: 'industry',
 
 	state: {
 		list: [],
 		total: null,
 		loading: false, // 控制加载状态
-		current: null, // 当前分页信息
 		currentItem: {}, // 当前操作的用户对象
 		modalVisible: false, // 弹出窗的显示状态
 		modalType: 'create', // 弹出窗的类型（添加用户，编辑用户）

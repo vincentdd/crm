@@ -30,7 +30,7 @@ export async function create(params) {
 export async function update(params) {
   return request({
     url: UPDATA_CRMACCMANAG,
-    method: 'patch',
+    method: 'post',
     data: params,
   })
 }

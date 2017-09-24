@@ -12,13 +12,13 @@ import {
 	updateStatus
 } from 'services/account'
 import {
-	pageModel
+	pageSizeModel
 } from './common'
 const {
 	prefix
 } = config
 
-export default modelExtend(pageModel, {
+export default modelExtend(pageSizeModel, {
 	namespace: 'account',
 
 	state: {
@@ -71,11 +71,13 @@ export default modelExtend(pageModel, {
 					type: 'querySuccess',
 					payload: {
 						list: data.dataList,
-						pagination: {
-							current: Number(data.page.currentPage),
-							pageSize: Number(payload.pageSize) || 10,
-							total: data.page.totalCount,
+						page: {...data.page
 						},
+						// pagination: {
+						// 	current: Number(data.page.currentPage),
+						// 	pageSize: Number(payload.pageSize) || 10,
+						// 	total: data.page.totalCount,
+						// },
 					},
 				})
 			} else {

@@ -23,13 +23,19 @@ class BuildTree extends React.Component {
 			// }
 		}
 		// const dataList = {};
-	renderTreeNodes = (list) => {
-		return data.map((item) => {
+	getKey(parentKey, index) {
+		if (parentKey == undefined)
+			return index;
+		else
+			return `${parentKey}-${index}`;
+	}
+	renderTreeNodes = (list, parentKey) => {
+		return data.map((item, index) => {
 			if (item.childFlag) {
 				return (
-					<TreeNode title={item.nodeName} key={item.key} dataRef={item}>
+					<TreeNode title={item.nodeName} key={this.getKey(parentKey,index)} dataRef={item}>
 				{
-					this.renderTreeNodes(item.children)
+					this.renderTreeNodes(item.children,item.key)
 				}
           </TreeNode>
 				);
@@ -37,13 +43,11 @@ class BuildTree extends React.Component {
 			return <TreeNode {...item} />;
 		});
 	}
-	componentWillMount() {}
 	render() {
 		return (
 			<div {...props}>
-			<TreeNode title={this.props.nodeName} ></TreeNode>
-			<Input style={{dispaly: 'none'}}></Input>
-		</div>
+			{this.renderTreeNodes(this.props.list}
+			</div>
 		)
 	}
 }

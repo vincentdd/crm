@@ -155,7 +155,7 @@ const modal = ({
           })(
             <Radio.Group>
               <Radio value={1}>可用</Radio>
-              <Radio value={2}>不可用</Radio>
+              <Radio value={0}>不可用</Radio>
             </Radio.Group>
           )}
         </FormItem>

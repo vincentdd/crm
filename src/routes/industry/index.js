@@ -9,7 +9,9 @@ import {
 import {
     routerRedux
 } from 'dva/router'
-
+import {
+    BuildTree
+} from 'components'
 const Industry = ({
     industry,
     dispatch,
@@ -24,20 +26,9 @@ const Industry = ({
         query = {}, pathname
     } = location
 
-    const listProps = {
-        pagination,
+    const treeProps = {
         dataSource: list,
         loading: loading.effects['industry/query'],
-        onChange(page) {
-            dispatch(routerRedux.push({
-                pathname,
-                query: {
-                    ...query,
-                    page: page.current,
-                    pageSize: page.pageSize,
-                },
-            }))
-        },
     }
     const handleTabClick = (key) => {
         dispatch(routerRedux.push({
@@ -50,7 +41,7 @@ const Industry = ({
 
 
     return (<div className="content-inner">
-        {console.log(list)}
+        <BuildTree {...treeProps}></BuildTree>
   </div>)
 }
 
