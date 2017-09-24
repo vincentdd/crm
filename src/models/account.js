@@ -9,6 +9,7 @@ import {
 	create,
 	query,
 	update,
+	updateStatus
 } from 'services/account'
 import {
 	pageModel
@@ -71,9 +72,9 @@ export default modelExtend(pageModel, {
 					payload: {
 						list: data.dataList,
 						pagination: {
-							current: Number(payload.page) || 1,
+							current: Number(data.page.currentPage),
 							pageSize: Number(payload.pageSize) || 10,
-							total: data.total,
+							total: data.page.totalCount,
 						},
 					},
 				})
@@ -88,6 +89,9 @@ export default modelExtend(pageModel, {
 			call,
 			put
 		}) {
+			payload = {...payload,
+				id: 0
+			};
 			const data = yield call(create, payload)
 			if (data.success) {
 				yield put({
@@ -100,7 +104,27 @@ export default modelExtend(pageModel, {
 				throw data
 			}
 		},
-		// 	* 'delete' () {},
+		* updateStatus({
+			payload
+		}, {
+			select,
+			call,
+			put
+		}) {
+			const newUser = {
+				accountId: payload.currentItem.id,
+				status: Number(!payload.currentItem.status)
+			}
+			const data = yield call(updateStatus, newUser);
+			console.log(data);
+			if (data.success) {
+				yield put({
+					type: 'query'
+				})
+			} else {
+				throw data
+			}
+		},
 		* update({
 			payload
 		}, {
@@ -112,9 +136,9 @@ export default modelExtend(pageModel, {
 				account
 			}) => account.currentItem.id)
 			const newUser = {...payload,
-				id
+				accountId: id
 			}
-			const data = yield call(update, newUser)
+			const data = yield call(update, newUser);
 			console.log(data);
 			if (data.success) {
 				yield put({

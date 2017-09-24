@@ -39,13 +39,14 @@ module.exports = {
     UPDATA_CRMACCMANAG: `${APIV4}/customer/save`,
     clue: `${APIV1}/clue`,
     //crmaccmanag: `${APIV3}/customer/list/get`,
+    //管理平台
     GET_ACCOUNT: `${APIV4}/account/list`,
     UPDATA_ACCOUNT: `${APIV4}/account/save`,
+    UPDATA_STATUS_ACCOUNT: `${APIV4}/account/status/update`,
     //crm平台
     GET_CRM_ACCOUNT: `${CRMAPI}/account/list`,
     UPDATE_CRM_ACCOUNT: `${CRMAPI}/account/save`,
     UPDATE_CRM_ACCOUNT_STATUS: `${CRMAPI}/account/status/update`
-
-    //account: `${APIV1}/account`,
+      //account: `${APIV1}/account`,
   },
 }

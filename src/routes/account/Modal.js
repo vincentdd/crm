@@ -36,7 +36,7 @@ const modal = ({
     },
     ...modalProps
 }) => {
-    const handleOk = () => {
+    const handleOk = (item) => {
         validateFields((errors) => {
             if (errors) {
                 return
@@ -45,8 +45,8 @@ const modal = ({
                     ...getFieldsValue(),
                     //key: item.key,
                     birth: moment(getFieldValue('birth')).format('YYYY-MM-DD'),
-                    status: item.status,
-                    id: item.id,
+                    // status: item.status,
+                    // id: item.id,
                 }
                 // console.log(data.indate);
                 // data.indate.map((currentValue) => {
@@ -54,7 +54,6 @@ const modal = ({
                 //     return currentValue.toLocaleString().substr(0, 10);
                 // });
                 // data.date = 0;
-            console.log(data);
             onOk(data);
         })
     }
@@ -77,8 +76,8 @@ const modal = ({
           })(<Input />)}
         </FormItem>
         <FormItem label="手机" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('account', {
-      initialValue: item.account,
+          {getFieldDecorator('mobile', {
+      initialValue: item.mobile,
             rules: [
               {
                 required: true,
