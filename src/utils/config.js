@@ -46,7 +46,8 @@ module.exports = {
     //crm平台
     GET_CRM_ACCOUNT: `${CRMAPI}/account/list`,
     UPDATE_CRM_ACCOUNT: `${CRMAPI}/account/save`,
-    UPDATE_CRM_ACCOUNT_STATUS: `${CRMAPI}/account/status/update`
+    UPDATE_CRM_ACCOUNT_STATUS: `${CRMAPI}/account/status/update`,
+    GET_CRM_ACCOUNT_DETAIL: `${CRMAPI}/account/detail/get/{accountId}`,
       //account: `${APIV1}/account`,
   },
 }

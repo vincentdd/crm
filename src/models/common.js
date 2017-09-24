@@ -51,9 +51,9 @@ const pageSizeModel = modelExtend(model, {
 
   state: {
     list: [],
-    page: {
-      currentPage: 0,
-      totalPage: 0,
+    pagination: {
+      current: 0,
+      total: 0,
       pageSize: 1,
       totalCount: 0,
     },
@@ -71,9 +71,10 @@ const pageSizeModel = modelExtend(model, {
       return {
         ...state,
         list,
-        page: {
-          ...state.page,
-          ...page,
+        pagination: {
+          current: payload.page.currentPage,
+          total: payload.page.totalCount,
+          pageSize: payload.page.pageSize,
         },
       }
     },

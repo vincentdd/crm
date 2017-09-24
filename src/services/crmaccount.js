@@ -11,6 +11,7 @@ const {
   GET_CRM_ACCOUNT,
   UPDATE_CRM_ACCOUNT,
   UPDATE_CRM_ACCOUNT_STATUS,
+  GET_CRM_ACCOUNT_DETAIL,
 } = api
 
 export async function query(params) {
@@ -21,11 +22,10 @@ export async function query(params) {
   })
 }
 
-export async function create(params) {
+export async function detail(id) {
   return request({
-    url: user.replace('/:id', ''),
+    url: GET_CRM_ACCOUNT_DETAIL.replace('{accountId}', id),
     method: 'post',
-    data: params,
   })
 }
 
@@ -46,6 +46,14 @@ export async function update_status(params){
 }
 
 export async function update(params) {
+  return request({
+    url: UPDATE_CRM_ACCOUNT,
+    method: 'post',
+    data: params,
+  })
+}
+
+export async function create(params) {
   return request({
     url: UPDATE_CRM_ACCOUNT,
     method: 'post',
