@@ -4,15 +4,18 @@ import {
 	Table,
 	Icon
 } from 'antd'
-
+import {
+	DropOption
+} from 'components'
 const List = ({
 	onEditItem,
+	toggleStatus,
 	...tableProps
 }) => {
-	const handleClick = (record, e, text) => {
-		if (text === '1') {
-			//dosomething;
-		} else if (text === '3') {
+	const handleClick = (record, e) => {
+		if (e.key === '1') {
+			toggleStatus(record);
+		} else if (e.key === '3') {
 			onEditItem(record);
 		}
 	}
@@ -25,7 +28,7 @@ const List = ({
 		dataIndex: 'name',
 	}, {
 		title: '手机',
-		dataIndex: 'account',
+		dataIndex: 'mobile',
 	}, {
 		title: '部门',
 		dataIndex: 'department',
@@ -35,7 +38,7 @@ const List = ({
 	}, {
 		title: '状态',
 		render: (record) => {
-			return <span>{record.status === true ? '启用' : '禁用'}</span>
+			return <span>{record.status == true ? '启用' : '禁用'}</span>
 		}
 	}, {
 		title: '生日',
@@ -47,12 +50,12 @@ const List = ({
 		dataIndex: 'industryNames',
 	}, {
 		title: '操作',
+		key: 'operation',
+		width: 100,
 		render: (record) => {
-			return <span style={{display:"flex",justifyContent:"space-around"}} >
-      			<a href="#">{record.status === true?<Icon type="down" style={{ fontSize: 16, color: 'green' }} />:<Icon type="close-circle-o" style={{ fontSize: 16, color: 'green' }} />}</a>
-      			<a href="#" >查看</a>
-				<a href="#" onClick={(e) => {handleClick(record, e,'3')}}>编辑</a>
-    		</span>
+			let method;
+			record.status == true ? method = '禁用' : method = '启用';
+			return <DropOption onMenuClick={e => handleClick(record, e)} menuOptions={[{ key: '1', name: method }, { key: '2', name: '查看' },{ key: '3', name: '编辑' }]} />
 		}
 	}]
 

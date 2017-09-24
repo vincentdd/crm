@@ -55,6 +55,7 @@ export default modelExtend(pageModel, {
             call,
             put
         }) {
+            console.log(payload);
             const data = yield call(query, payload)
             if (data) {
                 yield put({

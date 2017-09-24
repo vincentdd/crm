@@ -43,9 +43,6 @@ const Account = ({
 			dispatch({
 				type: `account/hideModal`
 			})
-			dispatch({
-				type: `account/hideModal`
-			})
 		},
 	}
 
@@ -98,6 +95,18 @@ const Account = ({
 				payload: {
 					modalType: 'update',
 					currentItem: item,
+				},
+			})
+		},
+		toggleStatus(item) {
+			debugger;
+			console.log(Number(!item.status));
+			dispatch({
+				type: `account/updateStatus`,
+				payload: {
+					// accountId: item.accountId,
+					currentItem: item,
+					//status: Number(!item.status)
 				},
 			})
 		},

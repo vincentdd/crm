@@ -39,6 +39,7 @@ module.exports = {
     //crmaccmanag: `${APIV3}/customer/list/get`,
     GET_ACCOUNT: `${APIV4}/account/list`,
     UPDATA_ACCOUNT: `${APIV4}/account/save`,
+    UPDATA_STATUS_ACCOUNT: `${APIV4}/account/status/update`,
     //account: `${APIV1}/account`,
   },
 }
