@@ -11,6 +11,8 @@ import {
     routerRedux
 } from 'dva/router'
 
+import Modal from './Modal'
+
 const TreeNode = Tree.TreeNode;
 
 const Industry = ({
@@ -21,10 +23,37 @@ const Industry = ({
 }) => {
     const {
         list,
+        modalVisible,
+        modalType,
+        currentItem
     } = industry
     const {
         query = {}, pathname
     } = location
+
+
+  const modalProps = {
+    item: modalType === 'create' ? {parentId: currentItem.parentId} : currentItem,
+    modalType: modalType,
+    visible: modalVisible,
+    maskClosable: false,
+    confirmLoading: loading.effects['crmaccount/update'],
+    title: `${modalType === 'create' ? '创建行业节点' : '修改行业节点'}`,
+    wrapClassName: 'vertical-center-modal',
+    onOk(data) {
+      dispatch({
+        type: `industry/${modalType}`,
+        payload: data,
+      })
+    },
+    onCancel() {
+      dispatch({
+        type: 'industry/hideModal',
+      })
+    },
+  }
+
+    let selectInfo = {};
 
     let setTreeNodes = (parentKey,list)=> {
       for(var i =0; i<list.length; i++){
@@ -38,11 +67,11 @@ const Industry = ({
     }
     console.log(list);
     setTreeNodes(0, list);
-    console.log(list);
+    console.log(industry);
 
   const renderTreeNodes = (data) => {
     return data.map((item) => {
-      if (item.children) {
+      if (item.children.length > 0) {
         return (
           <TreeNode title={item.title} key={item.key} dataRef={item}>
             {renderTreeNodes(item.children)}
@@ -57,19 +86,52 @@ const Industry = ({
 
   const onSelect = (selectedKeys, info) => {
     console.log('selected', selectedKeys, info);
+    selectInfo = info;
+    dispatch({
+      type: 'industry/updateState',
+      payload: {
+        currentItem: selectInfo.node.props.dataRef
+      },
+    })
   }
   const onCheck = (checkedKeys, info) => {
     console.log('onCheck', checkedKeys, info);
   }
+  const onDel = () =>{
+    console.log(selectInfo.node.props.dataRef.id);
+    dispatch({
+      type: 'industry/del',
+      payload: {
+        industryId: selectInfo.node.props.dataRef.id
+      },
+    })
+  }
+  const onEdit = () =>{
+    dispatch({
+      type: `industry/showModal`,
+      payload: {
+        modalType: 'update',
+      },
+    })
+  }
+  const onAdd = ()=>{
+    dispatch({
+      type: 'industry/showModal',
+      payload: {
+        modalType: 'create',
+      },
+    })
+  }
 
   return (<div className="content-inner">
-    <Button type="primary">新增</Button>
-    <Button>修改</Button>
-    <Button type="danger">删除</Button>
+    <Button type="primary" onClick={onAdd}>新增</Button>
+    <Button type="primary" onClick={onEdit}>修改</Button>
+    <Button type="danger" onClick={onDel}>删除</Button>
     <Tree onSelect={onSelect}
           onCheck={onCheck}>
       {renderTreeNodes(list)}
     </Tree>
+    {modalVisible && <Modal {...modalProps} />}
   </div>)
 }
 

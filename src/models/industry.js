@@ -6,6 +6,8 @@ import {
 	config
 } from 'utils'
 import {
+  create,
+  update,
 	query,
   del
 } from 'services/industry'
@@ -23,7 +25,6 @@ export default modelExtend(pageSizeModel, {
 		list: [],
 		total: null,
 		loading: false, // 控制加载状态
-		current: null, // 当前分页信息
 		currentItem: {}, // 当前操作的用户对象
 		modalVisible: false, // 弹出窗的显示状态
 		modalType: 'create', // 弹出窗的类型（添加用户，编辑用户）
@@ -55,7 +56,7 @@ export default modelExtend(pageSizeModel, {
     const data = yield call(query, payload)
     console.log(data);
     yield put({
-      type: 'update',
+      type: 'updateState',
       payload: {
         list: data.dataList,
       },
@@ -65,42 +66,64 @@ export default modelExtend(pageSizeModel, {
       call,
       put
     }) {
-      const data = yield call(del, payload.id);
+      const data = yield call(del, payload);
       yield put({
-        type: 'update',
+        type: 'updateState',
         payload: {
           list: data.dataList,
         },
       })
-		}
-
-		// 	* create({
-		// 		payload
-		// 	}, {
-		// 		call,
-		// 		put
-		// 	}) {
-		// 		const data = yield call(create, payload)
-		// 		if (data.success) {
-		// 			yield put({
-		// 				type: 'hideModal'
-		// 			})
-		// 			yield put({
-		// 				type: 'query'
-		// 			})
-		// 		} else {
-		// 			throw data
-		// 		}
-		// 	},
-		// 	// 	* 'delete' () {},
-		// 	//	* update() {}
+		},
+    * update({
+      payload,
+    }, {
+      call,
+      put
+    }) {
+      const data = yield call(update, payload);
+      console.log('updateSuccess-------------------------'+ data);
+      yield put({
+        type: 'query',
+      });
+      yield put({
+        type: 'hideModal'
+      })
+    },
+    * create({
+      payload,
+    }, {
+      call,
+      put
+    }) {
+      payload.id = 0;
+      const data = yield call(create, payload);
+      yield put({
+        type: 'query',
+      })
+      yield put({
+        type: 'hideModal'
+      })
+    },
 	},
 	reducers: {
 		// showLoading() {}, // 控制加载状态的 reducer
-		update(state, {payload}) {
+		updateState(state, {payload}) {
 			return {...state,
         ...payload
 			}
 		},
+    showModal(state, {
+      payload
+    }) {
+      return {...state,
+        ...payload,
+        modalVisible: true
+      }
+    },
+    hideModal(state) {
+      return {...state,
+        modalVisible: false
+      }
+    },
 	}
 })
