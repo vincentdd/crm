@@ -6,7 +6,8 @@ import {
 	config
 } from 'utils'
 import {
-	query
+	query,
+  del
 } from 'services/industry'
 import {
 	pageSizeModel
@@ -48,27 +49,30 @@ export default modelExtend(pageSizeModel, {
 			call,
 			put
 		}) {
-			payload = {
-				pageNo: 1
-			}
-			const data = yield call(query, payload)
-			console.log(data);
-			if (data.success) {
-				yield put({
-					type: 'querySuccess',
-					payload: {
-						list: data.dataList,
-						// pagination: {
-						// 	current: Number(payload.page) || 1,
-						// 	pageSize: Number(payload.pageSize) || 10,
-						// 	total: data.total,
-						// },
-					},
-				})
-			} else {
-				throw data
-			}
-		},
+    payload = {
+      pageNo: 1
+    }
+    const data = yield call(query, payload)
+    console.log(data);
+    yield put({
+      type: 'update',
+      payload: {
+        list: data.dataList,
+      },
+    })
+  },
+  * del({payload = {}}, {
+      call,
+      put
+    }) {
+      const data = yield call(del, payload.id);
+      yield put({
+        type: 'update',
+        payload: {
+          list: data.dataList,
+        },
+      })
+		}
 
 		// 	* create({
 		// 		payload
@@ -91,25 +95,12 @@ export default modelExtend(pageSizeModel, {
 		// 	// 	* 'delete' () {},
 		// 	//	* update() {}
 	},
-	// reducers: {
-	// 	// showLoading() {}, // 控制加载状态的 reducer
-	// 	showModal(state, {
-	// 		payload
-	// 	}) {
-	// 		return {...state,
-	// 			...payload,
-	// 			modalVisible: true
-	// 		}
-	// 		console.log(state.modalVisible);
-	// 	},
-	// 	hideModal(state) {
-	// 		return {...state,
-	// 			modalVisible: false
-	// 		}
-	// 	},
-	// 	// querySuccess() {},
-	// 	// createSuccess() {},
-	// 	// deleteSuccess() {},
-	// 	// updateSuccess() {},
-	// }
+	reducers: {
+		// showLoading() {}, // 控制加载状态的 reducer
+		update(state, {payload}) {
+			return {...state,
+        ...payload
+			}
+		},
+	}
 })

@@ -4,11 +4,14 @@ import {
     connect
 } from 'dva'
 import {
-    Tabs
+    Tree,
+  Button
 } from 'antd'
 import {
     routerRedux
 } from 'dva/router'
+
+const TreeNode = Tree.TreeNode;
 
 const Industry = ({
     industry,
@@ -18,39 +21,55 @@ const Industry = ({
 }) => {
     const {
         list,
-        pagination
     } = industry
     const {
         query = {}, pathname
     } = location
 
-    const listProps = {
-        pagination,
-        dataSource: list,
-        loading: loading.effects['industry/query'],
-        onChange(page) {
-            dispatch(routerRedux.push({
-                pathname,
-                query: {
-                    ...query,
-                    page: page.current,
-                    pageSize: page.pageSize,
-                },
-            }))
-        },
+    let setTreeNodes = (parentKey,list)=> {
+      for(var i =0; i<list.length; i++){
+        var key = parentKey + '-' + i;
+        list[i].key = key;
+        list[i].title = list[i].nodeName;
+        if(list[i].children.length > 0){
+          setTreeNodes(key,list[i].children);
+        }
+      }
     }
-    const handleTabClick = (key) => {
-        dispatch(routerRedux.push({
-            pathname,
-            query: {
-                status: key,
-            },
-        }))
-    }
+    console.log(list);
+    setTreeNodes(0, list);
+    console.log(list);
+
+  const renderTreeNodes = (data) => {
+    return data.map((item) => {
+      if (item.children) {
+        return (
+          <TreeNode title={item.title} key={item.key} dataRef={item}>
+            {renderTreeNodes(item.children)}
+          </TreeNode>
+        );
+      }
+      return <TreeNode {...item} />;
+    });
+
+  }
 
 
-    return (<div className="content-inner">
-        {console.log(list)}
+  const onSelect = (selectedKeys, info) => {
+    console.log('selected', selectedKeys, info);
+  }
+  const onCheck = (checkedKeys, info) => {
+    console.log('onCheck', checkedKeys, info);
+  }
+
+  return (<div className="content-inner">
+    <Button type="primary">新增</Button>
+    <Button>修改</Button>
+    <Button type="danger">删除</Button>
+    <Tree onSelect={onSelect}
+          onCheck={onCheck}>
+      {renderTreeNodes(list)}
+    </Tree>
   </div>)
 }
 

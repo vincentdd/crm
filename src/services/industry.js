@@ -8,6 +8,7 @@ const {
 } = config
 const {
 	GET_INDUSTRY,
+  DEL_INDUSTRY
 } = api
 
 export async function query(params) {
@@ -18,13 +19,12 @@ export async function query(params) {
 	})
 }
 
-// export async function create(params) {
-//   return request({
-//     url: UPDATA_CRMACCMANAG,
-//     method: 'post',
-//     data: params,
-//   })
-// }
+export async function del(id) {
+  return request({
+    url: DEL_INDUSTRY.replace('{industryId}', id),
+    method: 'post',
+  })
+}
 
 // export async function update(params) {
 //   return request({

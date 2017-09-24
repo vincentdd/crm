@@ -43,6 +43,7 @@ module.exports = {
     GET_ACCOUNT: `${APIV4}/account/list`,
     UPDATA_ACCOUNT: `${APIV4}/account/save`,
     UPDATA_STATUS_ACCOUNT: `${APIV4}/account/status/update`,
+    DEL_INDUSTRY: `${APIV4}/industry/delete/{industryId}`,
     //crm平台
     GET_CRM_ACCOUNT: `${CRMAPI}/account/list`,
     UPDATE_CRM_ACCOUNT: `${CRMAPI}/account/save`,
