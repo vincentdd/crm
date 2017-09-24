@@ -34,6 +34,7 @@ const modal = ({
   },
   ...modalProps
 }) => {
+  console.log(item);
   const handleOk = () => {
     validateFields((errors) => {
       if (errors) {
@@ -54,17 +55,18 @@ const modal = ({
 
   return (
     <Modal {...modalOpts}>
-      <Form layout="horizontal">
-        <FormItem label="员工编号" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('accountNo', {
-            initialValue: item.accountNo,
-            rules: [
-              {
-                required: true,
-              },
-            ],
-          })(<Input />)}
-        </FormItem>
+      <Form layout="horizontal">{
+        modalOpts.modalType == 'create' ? '': <FormItem label="员工编号" hasFeedback {...formItemLayout}>
+            {getFieldDecorator('accountNo', {
+              initialValue: item.accountNo,
+              rules: [
+                {
+                  required: true,
+                },
+              ],
+            })(<Input />)}
+          </FormItem>
+      }
         <FormItem label="姓名" hasFeedback {...formItemLayout}>
           {getFieldDecorator('name', {
             initialValue: item.name,
