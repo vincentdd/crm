@@ -25,7 +25,7 @@ const Crmaccmanag = ({
 		pagination,
 		modalVisible,
 		modalType,
-		currentItem,
+    currentItem,
 		isMotion,
 		selectedRowKeys
 	} = crmaccmanag

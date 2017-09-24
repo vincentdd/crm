@@ -3,7 +3,6 @@ import {
     config
 } from 'utils'
 
-import axios from 'axios'
 const {
     api
 } = config

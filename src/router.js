@@ -170,7 +170,16 @@ const Routers = function({
             cb(null, require('routes/clue/'))
           }, 'clue')
         },
-      }, {
+      },
+      {
+        path: 'crmaccount',
+        getComponent(nextState, cb) {
+          require.ensure([], (require) => {
+            registerModel(app, require('models/crmaccount'))
+            cb(null, require('routes/crmaccount/'))
+          }, 'crmaccount')
+        },
+      },{
         path: '*',
         getComponent(nextState, cb) {
           require.ensure([], (require) => {
