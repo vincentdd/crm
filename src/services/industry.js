@@ -1,21 +1,21 @@
 import {
-  request,
-  config
+	request,
+	config
 } from 'utils'
 
 const {
-  api
+	api
 } = config
 const {
-  GET_INDUSTRY
+	GET_INDUSTRY,
 } = api
 
 export async function query(params) {
-  return request({
-    url: GET_INDUSTRY,
-    method: 'post',
-    data: params,
-  })
+	return request({
+		url: GET_INDUSTRY,
+		method: 'post',
+		data: params,
+	})
 }
 
 // export async function create(params) {

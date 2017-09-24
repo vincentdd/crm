@@ -51,7 +51,6 @@ const Industry = ({
 
     return (<div className="content-inner">
         {console.log(list)}
-        hello world
   </div>)
 }
 

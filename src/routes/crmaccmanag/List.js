@@ -1,18 +1,22 @@
 import React from 'react'
 import moment from 'moment'
 import {
+	DropOption
+} from 'components'
+import {
 	Table,
 	Icon
 } from 'antd'
 
 const List = ({
 	onEditItem,
+	toggleStatus,
 	...tableProps
 }) => {
-	const handleClick = (record, e, text) => {
-		if (text === '1') {
-			//dosomething;
-		} else if (text === '3') {
+	const handleClick = (record, e) => {
+		if (e.key === '1') {
+			toggleStatus(record);
+		} else if (e.key === '3') {
 			onEditItem(record);
 		}
 	}
@@ -50,16 +54,14 @@ const List = ({
 	}, {
 		title: '状态',
 		render: (record) => {
-			return <a href="#">{record.status === 1 ? '启用' : '禁用'}</a>
+			return <span>{record.status === 1 ? '启用' : '禁用'}</span>
 		}
 	}, {
 		title: '操作',
+		key: 'operation',
+		width: 100,
 		render: (record) => {
-			return <span style={{display:"flex",justifyContent:"space-around"}} >
-      			<a href="#">{record.status === 1?<Icon type="down" style={{ fontSize: 16, color: 'green' }} />:<Icon type="close-circle-o" style={{ fontSize: 16, color: 'green' }} />}</a>
-      			<a href="#" >查看</a>
-				<a href="#" onClick={(e) => {handleClick(record, e,'3')}}>编辑</a>
-    		</span>
+			return <DropOption onMenuClick = {e => handleClick(record, e)} menuOptions = {[{key: '1',name: record.status == 1 ? '禁用' : '启用'}, {key: '2',name: '查看'}, {key: '3',name: '编辑'}]}/>
 		}
 	}]
 

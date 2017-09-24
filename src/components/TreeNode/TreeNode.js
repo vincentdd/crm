@@ -8,13 +8,16 @@ import {
 } from 'antd';
 const TreeNode = Tree.TreeNode;
 
-const EditTreeNode = (
+export default EditTreeNode = (
 	props
 ) => {
 	return (
 		<div {...props}>
-			<TreeNode title={this.props.nodeName} ></TreeNode>
-			<Input style={{dispaly: 'none'}}></Input>
+	<TreeNode title={this.props.nodeName} ></TreeNode> < Input style = {
+		{
+			dispaly: 'none'
+		}
+	} > < /Input>
 		</div>
 	)
 }
