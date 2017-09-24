@@ -53,9 +53,7 @@ const List = ({
 		key: 'operation',
 		width: 100,
 		render: (record) => {
-			let method;
-			record.status == true ? method = '禁用' : method = '启用';
-			return <DropOption onMenuClick={e => handleClick(record, e)} menuOptions={[{ key: '1', name: method }, { key: '2', name: '查看' },{ key: '3', name: '编辑' }]} />
+			return <DropOption onMenuClick = {e => handleClick(record, e)} menuOptions = {[{key: '1',name: record.status == 1 ? '禁用' : '启用'}, {key: '2',name: '查看'}, {key: '3',name: '编辑'}]}/>
 		}
 	}]
 

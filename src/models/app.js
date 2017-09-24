@@ -95,7 +95,7 @@ export default {
       } = yield select(_ => _.app)
       const user = {
         permissions : {role: EnumRoleType.ADMIN},
-        username : '华良',
+        username : 'admin',
         id: 1
       }
       if (user) {

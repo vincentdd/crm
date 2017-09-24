@@ -8,12 +8,12 @@ const {
 let database = [{
   id: '1',
   icon: 'laptop',
-  name: 'CRM账号管理',
+  name: '管理平台---CRM账号管理',
   route: '/crmaccmanag',
 }, {
   id: '2',
   bpid: '1',
-  name: '员工管理',
+  name: '管理平台---员工管理',
   icon: 'user',
   route: '/account',
 }, {
@@ -31,8 +31,9 @@ let database = [{
 }, {
   id: '4',
   bpid: '1',
-  name: '员工',
-  icon: 'camera-o',
+  name: 'CRM平台--员工',
+  icon: 'user',
+  route: '/crmaccount',
 }, {
   id: '5',
   bpid: '1',
@@ -46,7 +47,7 @@ let database = [{
 }, {
   id: '7',
   bpid: '1',
-  name: '行业管理',
+  name: '管理平台--行业管理',
   icon: 'shopping-cart',
   route: '/industry',
 }, {

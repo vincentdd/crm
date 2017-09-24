@@ -2,6 +2,7 @@ const APIV1 = '/api/v1'
 const APIV2 = '/api/v2'
 const APIV3 = 'http://www.izaiqi.com/ywy-manage'
 const APIV4 = 'http://jia100.net:8085/manage'
+const CRMAPI = 'http://jia100.net:8085/ywy-crm'
 
 module.exports = {
   name: 'CRM',
@@ -17,6 +18,7 @@ module.exports = {
   APIV2,
   APIV3,
   APIV4,
+  CRMAPI,
   api: {
     userLogin: `${APIV1}/user/login`,
     USER_LOGIN: `${APIV4}/auth/logon/byPwd`,
@@ -37,9 +39,14 @@ module.exports = {
     UPDATA_CRMACCMANAG: `${APIV4}/customer/save`,
     clue: `${APIV1}/clue`,
     //crmaccmanag: `${APIV3}/customer/list/get`,
+    //管理平台
     GET_ACCOUNT: `${APIV4}/account/list`,
     UPDATA_ACCOUNT: `${APIV4}/account/save`,
     UPDATA_STATUS_ACCOUNT: `${APIV4}/account/status/update`,
-    //account: `${APIV1}/account`,
+    //crm平台
+    GET_CRM_ACCOUNT: `${CRMAPI}/account/list`,
+    UPDATE_CRM_ACCOUNT: `${CRMAPI}/account/save`,
+    UPDATE_CRM_ACCOUNT_STATUS: `${CRMAPI}/account/status/update`
+      //account: `${APIV1}/account`,
   },
 }
