@@ -51,24 +51,27 @@ export default modelExtend(pageSizeModel, {
 			put
 		}) {
 			// let temp = {};
+			const temp = {
+				pageNo: payload.page || 1
+			};
 			// if (payload.page === undefined) {
-			// 	temp.pageNo = 1;
+			// 	temp = {
+			// 		pageNo: 1
+			// 	}
 			// } else {
-			// 	temp = payload.page;
+			// 	temp = {
+			// 		pageNo: payload.page
+			// 	}
 			// }
-			payload = {
-				pageNo: 1,
-				content: ''
-			}; //临时这么写
-			const data = yield call(query, payload)
-				//console.log(new Date(data.crmList[0].createTime.time));
-				//debugger;
+			const data = yield call(query, temp)
+				// console.log(data);
+				// debugger;
 			if (data.success) {
 				yield put({
 					type: 'querySuccess',
 					payload: {
 						list: data.crmList,
-						pagination: {
+						page: {
 							...data.page
 						},
 						// pagination: {
@@ -90,6 +93,8 @@ export default modelExtend(pageSizeModel, {
 			put
 		}) {
 			const data = yield call(create, payload)
+			console.log(`result:${data}`);
+			debugger;
 			if (data.success) {
 				yield put({
 					type: 'hideModal'

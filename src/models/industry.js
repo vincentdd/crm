@@ -12,13 +12,13 @@ import {
   del
 } from 'services/industry'
 import {
-	pageSizeModel
+	pageModel
 } from './common'
 const {
 	prefix
 } = config
 
-export default modelExtend(pageSizeModel, {
+export default modelExtend(pageModel, {
 	namespace: 'industry',
 
 	state: {

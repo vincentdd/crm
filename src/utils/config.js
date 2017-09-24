@@ -50,6 +50,6 @@ module.exports = {
     UPDATE_CRM_ACCOUNT: `${CRMAPI}/account/save`,
     UPDATE_CRM_ACCOUNT_STATUS: `${CRMAPI}/account/status/update`,
     GET_CRM_ACCOUNT_DETAIL: `${CRMAPI}/account/detail/get/{accountId}`,
-      //account: `${APIV1}/account`,
+    //account: `${APIV1}/account`,
   },
 }

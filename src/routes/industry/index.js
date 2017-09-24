@@ -5,11 +5,14 @@ import {
 } from 'dva'
 import {
     Tree,
-  Button
+    Button
 } from 'antd'
 import {
     routerRedux
 } from 'dva/router'
+// import {
+//     BuildTree
+// } from 'components'
 
 import Modal from './Modal'
 
@@ -31,7 +34,7 @@ const Industry = ({
         query = {}, pathname
     } = location
 
-
+  console.log(industry);
   const modalProps = {
     item: modalType === 'create' ? {parentId: currentItem.parentId} : currentItem,
     modalType: modalType,
@@ -65,9 +68,6 @@ const Industry = ({
         }
       }
     }
-    console.log(list);
-    setTreeNodes(0, list);
-    console.log(industry);
 
   const renderTreeNodes = (data) => {
     return data.map((item) => {
@@ -76,21 +76,19 @@ const Industry = ({
           <TreeNode title={item.title} key={item.key} dataRef={item}>
             {renderTreeNodes(item.children)}
           </TreeNode>
-        );
-      }
-      return <TreeNode {...item} />;
-    });
+                    );
+                }
+                return <TreeNode {...item} />;
+            });
 
-  }
-
-
+        }
   const onSelect = (selectedKeys, info) => {
     console.log('selected', selectedKeys, info);
     selectInfo = info;
     dispatch({
       type: 'industry/updateState',
       payload: {
-        currentItem: selectInfo.node.props.dataRef
+        currentItem: selectInfo.node.props.dataRef ? selectInfo.node.props.dataRef: selectInfo.node.props
       },
     })
   }
@@ -122,6 +120,8 @@ const Industry = ({
       },
     })
   }
+  setTreeNodes(0, list);
+
 
   return (<div className="content-inner">
     <Button type="primary" onClick={onAdd}>新增</Button>
@@ -135,17 +135,17 @@ const Industry = ({
   </div>)
 }
 
-Industry.propTypes = {
-    industry: PropTypes.object,
-    loading: PropTypes.object,
-    location: PropTypes.object,
-    dispatch: PropTypes.func,
-}
+        Industry.propTypes = {
+            industry: PropTypes.object,
+            loading: PropTypes.object,
+            location: PropTypes.object,
+            dispatch: PropTypes.func,
+        }
 
-export default connect(({
-    industry,
-    loading
-}) => ({
-    industry,
-    loading
-}))(Industry)
+        export default connect(({
+            industry,
+            loading
+        }) => ({
+            industry,
+            loading
+        }))(Industry)
