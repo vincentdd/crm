@@ -36,7 +36,7 @@ const Industry = ({
 
   console.log(industry);
   const modalProps = {
-    item: modalType === 'create' ? {parentId: currentItem.parentId, level: currentItem.level + 1} : currentItem,
+    item: modalType === 'create' ? {} : currentItem,
     modalType: modalType,
     visible: modalVisible,
     maskClosable: false,
